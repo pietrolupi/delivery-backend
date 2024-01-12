@@ -21,7 +21,7 @@ class OrdersTableSeeder extends Seeder
 
                 $order = new Order();
                 $order->date = $row[0];
-                $order->total_price = Order::getTotalPrice($order);
+                $order->total_price = $row[1];
                 $order->customer_name = $row[2];
                 $order->customer_address = $row[3];
                 $order->customer_email = $row[4];

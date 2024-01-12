@@ -25,6 +25,10 @@ return new class extends Migration
             ->on('products')
             ->cascadeOnDelete();
 
+            $table->tinyInteger('product_quantity');
+
+            
+
         });
     }
 

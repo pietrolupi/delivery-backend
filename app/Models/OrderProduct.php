@@ -16,3 +16,5 @@ class OrderProduct extends Pivot
         'product_quantity',
     ];
 }
+
+

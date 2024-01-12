@@ -27,7 +27,7 @@ return new class extends Migration
 
             $table->tinyInteger('product_quantity');
 
-            
+
 
         });
     }

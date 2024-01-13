@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+/* use App\Http\Requests\RegisteredUserRequest;  already created and compiled, only has to be implemented */
 
 class RegisteredUserController extends Controller
 {
@@ -34,12 +35,14 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'vat'=> ['required', 'string', 'max:13', 'min:13', 'unique:'.User::class]
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'vat' => $request->vat,
         ]);
 
         event(new Registered($user));

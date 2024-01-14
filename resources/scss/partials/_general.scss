@@ -4,27 +4,30 @@ header{
     z-index: 999;
     position: fixed;
     width: 100%;
-    height: 50px;
+    height: 70px;
     background-color: rgb(112, 128, 112);
     color:white
 }
 .cs-container{
-    padding-top: 50px;
+    padding-top: 70px;
 }
 aside{
-    width: 50px;
-    height: calc(100vh - 50px);
+    width: 70px;
+    height: calc(100vh - 70px);
     background-color: rgb(112, 128, 112);
     text-align: center;
     .text{
         display: none;
+    }
+    .icon{
+        margin-bottom: 10px;
     }
 }
 
 @media all and (min-width: 576px ) {
     aside{
         text-align: left;
-        width: 170px;
+        width: 220px;
         .text{
             display: block;
         }

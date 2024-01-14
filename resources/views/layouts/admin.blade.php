@@ -12,7 +12,12 @@
 </head>
 
 <body>
-    @yield('content')
+    @include('generals.partials.header')
+    <div class="d-flex">
+        @include('generals.partials.aside')
+        @yield('content')
+    </div>
+
 </body>
 
 </html>

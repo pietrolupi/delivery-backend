@@ -1,12 +1,26 @@
 
-
-
 // aside
 
 aside{
-    width: 250px;
+    width: 56px;
     height: calc(100vh - 56px);
     background-color: rgb(112, 128, 112);
+    .text{
+        display: none;
+    }
+}
+
+@media all and (min-width: 576px ) {
+    aside{
+        text-align: left;
+        width: 200px;
+        .text{
+            display: block;
+        }
+        .icon{
+            display: none;
+        }
+    }
 }
 
 

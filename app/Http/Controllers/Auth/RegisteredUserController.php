@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
-/* use App\Http\Requests\RegisteredUserRequest;  already created and compiled, only has to be implemented */
 
 class RegisteredUserController extends Controller
 {
@@ -32,11 +31,20 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string','min:3', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'vat'=> ['required', 'string', 'max:13', 'min:13', 'unique:'.User::class]
-        ]);
+            'vat'=> ['required', 'string', 'max:13', 'min:13', 'unique:'.User::class],
+
+        ],
+
+        [
+            'vat.required' => 'You must provide your VAT code',
+            'vat.min'=> 'Your VAT must have 13 characters',
+            'vat.max'=> 'Your VAT must have 13 characters',
+            'vat.unique' => 'This VAT code has already been registered',
+        ]
+    );
 
         $user = User::create([
             'name' => $request->name,

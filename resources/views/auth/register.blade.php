@@ -3,6 +3,8 @@
 @section('content')
 <div class="container mt-4">
     <div class="row justify-content-center">
+
+
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
@@ -31,10 +33,11 @@
                             <div class="col-md-6">
                                 <input id="vat" type="text" class="form-control @error('vat') is-invalid @enderror" name="vat" value="{{ old('vat') }}" required autocomplete="vat" autofocus>
                             </div>
+
                             @error('vat')
-                            <span class="invalid-feedback" role="alert">
+                            <div class="text-danger w-100 text-center" role="alert">
                                 <strong>{{ $message }}</strong>
-                            </span>
+                            </div>
                             @enderror
                         </div>
 
@@ -44,12 +47,12 @@
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
-                                @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
                             </div>
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
 
                         <div class="mb-4 row">

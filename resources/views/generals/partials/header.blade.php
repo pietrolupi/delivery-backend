@@ -1,9 +1,9 @@
 <header>
-    <nav class="px-2 navbar-expand-lg  ">
-        <div class="d-flex justify-content-between align-items-center w-100 ">
+    <nav class="px-2 navbar-expand-lg h-100 ">
+        <div class="d-flex justify-content-between align-items-center w-100 h-100">
             <a class="navbar-brand fs-4" href="{{ route('home')}}">Deliveboo</a>
-            <div class="d-flex align-items-center">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-3">
+            <div class="d-flex align-items-center h-100">
+                <ul class="d-flex align-items-center m-0 gap-3 h-100 list-unstyled">
                     @guest
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ route('login') }}">LOGIN</a>

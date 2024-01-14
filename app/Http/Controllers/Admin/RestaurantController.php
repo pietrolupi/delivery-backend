@@ -8,6 +8,7 @@ use App\Models\Restaurant;
 use App\Http\Requests\RestaurantRequest;
 use Illuminate\Support\Facades\Auth;
 
+
 class RestaurantController extends Controller
 {
     /**
@@ -15,7 +16,7 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        $restaurant = Restaurant::where('user_id', Auth::id());
+        $restaurant = Restaurant::where('user_id', Auth::id())->get();
 
         return view('admin.restaurant.index', compact('restaurant'));
     }

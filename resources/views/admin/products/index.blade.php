@@ -14,17 +14,19 @@
         'add' => 'Add a new product',
     ])
 
-    <div class="d-flex flex-wrap gap-3 flex-column flex-md-row mt-4">
+    <div class="d-flex flex-wrap gap-3 flex-column flex-md-row align-items-center mt-4">
 
         @foreach ($products as $product)
             {{-- <li>{{ $product->name }}</li> --}}
 
             <a href="{{ route('admin.products.show', $product)}}">
 
-                <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
+                <div class="card product d-flex p-2 flex-column align-items-center justify-content-center" style="width: 18rem;">
+                    <div class="image">
+                        <img src="{{ asset('storage/' . $product->image) }}" class="img-fluid card-img-top w-100 h-100 object-fit-cover" alt="{{ $product->name}}">
+                    </div>
                     <div class="card-body">
-                        <p class="card-text">{{ $product->name}}</p>
+                        <h5 class="card-text">{{ $product->name }}</h5>
                     </div>
                 </div>
 

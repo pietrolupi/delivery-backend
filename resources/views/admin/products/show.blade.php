@@ -8,7 +8,7 @@
             </div>
         @endif
 
-        <h1>{{ $product->name}}</h1>
+        <h2>{{ $product->name}}</h1>
         @include('generals.buttons.edit_btn', ['route'=>route('admin.products.edit' , $product)])
         @include('generals.buttons.delete_btn', [
             'route' => route('admin.products.destroy', $product),

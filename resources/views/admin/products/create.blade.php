@@ -3,13 +3,21 @@
 @section('content')
     <div class="container">
 
+        @if (session('error'))
+            <div class="alert alert-danger" role="alert">
+                {{ session('error') }}
+            </div>
+        @endif
+
+
+
         <h2 class="mt-5">Create your product</h2>
 
         <form class="form-group" action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
 
             @csrf
 
-            <input type="hidden" name="restaurant_id" value="{{ $valore }}">
+            <input type="hidden" name="restaurant_id" value="{{ Auth::user()->restaurant->id }}">
 
             <div class="mb-3">
                 <label for="name" class="form-label">Product Name</label>
@@ -68,9 +76,9 @@
                 <label for="image" class="form-label">Image</label>
                 <input type="file" id="image" name="image"
                     class="form-control
-        @error('image')
-        is-invalid
-        @enderror"
+                    @error('image')
+                    is-invalid
+                    @enderror"
                     onchange="showImage(event)" value="{{ old('image') }}">
 
                 <img id="thumb" src="/img/placeholder.jpg" alt="">

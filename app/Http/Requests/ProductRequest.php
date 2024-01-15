@@ -22,7 +22,38 @@ class ProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "name" => "required|min:2|max:255",
+            "ingredients" => "required|min:2|max:255",
+            "description" => "max:400",
+            "price"=> "required|numeric|between:0,9999",
+            "visibility"=> "boolean",
+            "image"=> "image|mimes:jpeg,png,jpg,gif,svg",
+
         ];
+
     }
+    public function messages()
+{
+    return [
+        'name.required' => 'The name field is required.',
+        'name.min' => 'The name field must be at least :min characters.',
+        'name.max' => 'The name field cannot exceed :max characters.',
+
+        'ingredients.required' => 'The ingredients field is required.',
+        'ingredients.min' => 'The ingredients field must be at least :min characters.',
+        'ingredients.max' => 'The ingredients field cannot exceed :max characters.',
+
+        'description.max' => 'The description field cannot exceed :max characters.',
+
+        'price.required' => 'The price field is required.',
+        'price.numeric' => 'The price field must be a number.',
+        'price.between' => 'The price field must be between :min and :max.',
+
+        'visibility.boolean' => 'The visibility field must be a boolean value.',
+
+        'image.image' => 'The image field must be an image file.',
+        'image.mimes' => 'The image field must be a file of type: :mimes.',
+    ];
+}
+
 }

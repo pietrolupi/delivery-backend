@@ -30,9 +30,10 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        $form_data = $request->all();
+        $exist = Product::where('name', $form_data['name'])->first();
     }
 
     /**

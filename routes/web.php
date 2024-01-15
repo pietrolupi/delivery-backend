@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Guest\PageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\RestaurantController;
+use App\Http\Controllers\Admin\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,6 +41,7 @@ Route::middleware(['auth','verified'])
     ->group(function(){
         Route::get('/', [DashboardController::class, 'index'])->name('home');
         Route::resource('restaurant', RestaurantController::class);
+        Route::resource('products', ProductController::class);
     });
 
 require __DIR__.'/auth.php';

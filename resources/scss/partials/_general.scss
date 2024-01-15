@@ -1,9 +1,17 @@
 
-// aside
 body {
     height: 100vh;
 }
+.cs-container{
+    padding-top: 70px;
+    height: 100vh;
 
+}
+.content-container {
+    overflow-y: auto;
+}
+
+// header
 header{
     z-index: 999;
     position: fixed;
@@ -12,13 +20,11 @@ header{
     background-color: rgb(112, 128, 112);
     color:white
 }
-.cs-container{
-    padding-top: 70px;
 
-}
+// aside
 aside{
     width: 70px;
-    height: calc(100vh - 70px);
+    height: 100%;
     background-color: rgb(112, 128, 112);
     text-align: center;
     .text{
@@ -47,6 +53,4 @@ aside{
     border: 1px solid red;
 }
 
-.content-container {
-    overflow: hidden;
-}
+

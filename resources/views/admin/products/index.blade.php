@@ -20,12 +20,12 @@
 
             <a href="{{ route('admin.products.show', $product)}}">
 
-                <div class="card product d-flex p-2 flex-column align-items-center justify-content-center" style="width: 18rem;">
+                <div class="card product d-flex p-2 flex-column align-items-center justify-content-center" style="width: 15rem;">
                     <div class="image">
                         <img src="{{ asset('storage/' . $product->image) }}" class="img-fluid card-img-top w-100 h-100 object-fit-cover" alt="{{ $product->name}}">
                     </div>
                     <div class="card-body">
-                        <h5 class="card-text">{{ $product->name }}</h5>
+                        <h6 class="card-text">{{ $product->name }}</h6>
                     </div>
                 </div>
 

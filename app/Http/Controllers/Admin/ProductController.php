@@ -8,8 +8,7 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Restaurant;
-
-
+use Illuminate\Support\Facades\Storage;
 
 
 class ProductController extends Controller
@@ -54,6 +53,14 @@ class ProductController extends Controller
         }else {
             $new_product = new Product();
             $new_product->restaurant_id = $form_data['restaurant_id'];
+
+             // se esiste la chiave image salvo l'immagine nel file system e nel database
+            if(array_key_exists('image', $form_data)) {
+
+                // prima di salvare il file prendo il nome del file per salvarlo nel d
+                $data['image'] = Storage::put('uploads', $form_data['image']);
+            }
+
             $new_product->fill($form_data);
             $new_product->save();
             return redirect()->route('admin.products.show', $new_product)->with('success', 'the product was successfully added in your Menu');
@@ -83,6 +90,15 @@ class ProductController extends Controller
     public function update(ProductRequest $request, Product $product)
     {
         $form_data = $request->all();
+
+        if(array_key_exists('image', $form_data)){
+            if($product->image){
+                Storage::disk('public')->delete($product->image);
+            }
+
+            $form_data['image'] = Storage::put('uploads', $form_data['image']);
+        }
+
         $product->update($form_data);
         return redirect()->route('admin.products.show', compact('product'))->with('success', 'the product was successfully updated');
     }

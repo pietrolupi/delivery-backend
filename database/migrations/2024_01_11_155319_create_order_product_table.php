@@ -17,8 +17,8 @@ return new class extends Migration
             $table->tinyInteger('product_quantity');
             $table->timestamps();
 
-            $table->foreign('order_id')->references('id')->on('orders')->OnDelete();
-            $table->foreign('product_id')->references('id')->on('products')->OnDelete();
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
 
         });
     }

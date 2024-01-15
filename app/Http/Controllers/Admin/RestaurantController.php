@@ -8,6 +8,9 @@ use App\Models\Restaurant;
 use App\Http\Requests\RestaurantRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Type;
+use Illuminate\Support\Facades\Storage;
+
 
 class RestaurantController extends Controller
 {
@@ -26,13 +29,14 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        //
+        $types = Type::all();
+        return view('admin.restaurant.create', compact('types'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(RestaurantRequest $request)
     {
         //
     }

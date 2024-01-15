@@ -13,11 +13,12 @@
 
 <body>
     @include('generals.partials.header')
-    <div class="d-flex">
+    <div class="cs-container d-flex">
         @include('generals.partials.aside')
-        @yield('content')
+        <div class="p-4 w-100">
+            @yield('content')
+        </div>
     </div>
-
 </body>
 
 </html>

@@ -17,7 +17,6 @@
     <div class="d-flex flex-wrap gap-3 flex-column flex-md-row align-items-center mt-4">
 
         @foreach ($products as $product)
-            {{-- <li>{{ $product->name }}</li> --}}
 
             <a href="{{ route('admin.products.show', $product)}}">
 

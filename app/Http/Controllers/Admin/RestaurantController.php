@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Type;
 use Illuminate\Support\Facades\Storage;
 
+
 class RestaurantController extends Controller
 {
     /**

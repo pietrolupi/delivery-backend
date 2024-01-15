@@ -3,9 +3,17 @@
 @section('content')
 
 @if(isset($restaurant->user_id))
-    <h2>{{$restaurant->name}}</h2>
+<a href="{{-- {{route('admin.restaurant.show')}} --}}" class="text-decoration-none">
+    <div class="card" style="width: 18rem;">
+        <img src="{{ asset('storage/' . $restaurant->image) }}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h2 class="card-text text-center">{{$restaurant->name}}</h2>
+        </div>
+    </div>
+</a>
 @else
-    <a href="{{route('admin.restaurant.create')}}"> INSERISCI UN RISTORANTE</a>
+    @include('generals.botons.register_restaurant_boton', ['route' => route('admin.restaurant.create'), 'add' => 'Register your Restaurant'])
 @endif
+
 
 @endsection

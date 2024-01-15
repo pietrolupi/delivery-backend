@@ -9,7 +9,7 @@ use App\Http\Requests\RestaurantRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Type;
-use Illuminate\Support\Facades\Storage;
+
 
 
 class RestaurantController extends Controller
@@ -38,15 +38,29 @@ class RestaurantController extends Controller
      */
     public function store(RestaurantRequest $request)
     {
-        //
+        $form_data = $request->all();
+        $form_data['user_id'] = Auth::id();
+
+        $new_restaurant = new Restaurant();
+        $new_restaurant->fill($form_data);
+        $new_restaurant->save();
+        if(array_key_exists('types' , $form_data)){
+            $new_restaurant->types()->attach($form_data['types']);
+        }
+            return redirect()->route('admin.restaurant.show' , $new_restaurant->id);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Restaurant $restaurant)
     {
-        //
+
+        if($restaurant->user_id != Auth::id()){
+            return view('errors.404');
+        }
+
+        return view('admin.restaurant.show' , compact('restaurant'));
     }
 
     /**
@@ -68,8 +82,9 @@ class RestaurantController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Restaurant $restaurant)
     {
-        //
+        $restaurant->delete();
+        return redirect()->route('admin.restaurant.index')->with('deleted' , "$restaurant->name was deleted");
     }
 }

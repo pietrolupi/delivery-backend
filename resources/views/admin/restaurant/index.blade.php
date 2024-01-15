@@ -12,7 +12,7 @@
     </div>
 </a>
 @else
-    @include('generals.botons.register_restaurant_boton', ['route' => route('admin.restaurant.create'), 'add' => 'Register your Restaurant'])
+    @include('generals.buttons.register_restaurant_btn', ['route' => route('admin.restaurant.create'), 'add' => 'Register your Restaurant'])
 @endif
 
 

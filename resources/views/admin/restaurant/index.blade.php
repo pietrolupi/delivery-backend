@@ -5,7 +5,7 @@
 @if(isset($restaurant->user_id))
     <h2>{{$restaurant->name}}</h2>
 @else
-    <h2>INSERISCI UN RISTORANTE</h2>
+    <a href="{{route('admin.restaurant.create')}}"> INSERISCI UN RISTORANTE</a>
 @endif
 
 @endsection

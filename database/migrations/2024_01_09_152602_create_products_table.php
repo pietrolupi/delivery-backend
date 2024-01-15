@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('ingredients');
             $table->text('description', 400)->nullable();
-            $table->decimal('price', 6, 2);
+            $table->decimal('price', 6, 2)->unsigned();
             $table->boolean('visibility')->default(true);
             $table->string('image');
 

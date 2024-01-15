@@ -3,44 +3,66 @@
 @section('content')
     <div class="container">
 
-        <h1 class="mt-5">Create your products</h1>
+        <h2 class="mt-5">Create your product</h2>
 
-        <form class="form-group" action="{{ route('admin.product.store') }}" method="POST" enctype="multipart/form-data">
+        <form class="form-group" action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
 
             @csrf
+
+            <input type="hidden" name="restaurant_id" value="{{ $valore }}">
 
             <div class="mb-3">
                 <label for="name" class="form-label">Product Name</label>
                 <input type="text" id="name" name="name"
                     class="form-control
-        @error('name')
-        is-invalid
-        @enderror"
+                @error('name')
+                is-invalid
+                @enderror"
                     value="{{ old('name') }}">
             </div>
 
             <div class="mb-3">
-                <label for="address" class="form-label">Restaurant's address</label>
-                <input type="text" id="address" name="address"
+                <label for="ingredients" class="form-label">Ingredients</label>
+                <input type="text" id="ingredients" name="ingredients"
                     class="form-control
-        @error('address')
-        is-invalid
-        @enderror"
-                    value="{{ old('address') }}">
+                @error('ingredients')
+                is-invalid
+                @enderror"
+                    value="{{ old('ingredients') }}">
 
             </div>
 
             <div class="mb-3">
-                <div class="btn-group d-flex flex-wrap" role="group" aria-label="Basic checkbox toggle button group">
-                    @foreach ($types as $type)
-                        <input name="types[]" id="type_{{ $type->id }}" value="{{ $type->id }}" type="checkbox"
-                            class="btn-check" autocomplete="off" @if (old('types') && in_array($type->id, old('types'))) checked @endif>
+                <label for="description" class="form-label">description</label>
+                <textarea type="text" id="description" name="description"
+                    class="form-control
+                @error('description')
+                is-invalid
+                @enderror"
+                    value="{{ old('description') }}">
+                </textarea>
+            </div>
 
-                        <label class="btn btn-outline-primary" for="type_{{ $type->id }}">{{ $type->name }}</label>
-                    @endforeach
+            <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input type="number" step="0.01" id="price" name="price"
+                    class="form-control
+                @error('price')
+                is-invalid
+                @enderror"
+                    value="{{ old('price') }}">
+            </div>
 
+            <div class="mb-3">
+                <label for="visibility" class="form-label">Visibility</label>
+                <div class="form-check">
+                    <input value="1" checked type="checkbox" id="visibility" name="visibility" class="form-check-input"
+                          >
+                    <label class="form-check-label" for="visibility">Visible</label>
                 </div>
             </div>
+
+
 
             <div class="mb-3">
                 <label for="image" class="form-label">Image</label>

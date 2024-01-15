@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Http\Requests\ProductRequest;
 
+
 class ProductController extends Controller
 {
     /**
@@ -33,15 +34,26 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $form_data = $request->all();
-        $exist = Product::where('name', $form_data['name'])->first();
+
+        $exist = Product::where('name', $form_data['name'])->where('restaurant_id', $form_data['restaurant_id'])->first();
+
+        if($exist) {
+            return redirect()->route('admin.products.create')->with('error', 'this product is already in your Menu');
+        }else {
+            $new_product = new Product();
+            $new_product->restaurant_id = $form_data['restaurant_id'];
+            $new_product->fill($form_data);
+            $new_product->save();
+            return redirect()->route('admin.products.show', $new_product)->with('success', 'the product was successfully added in your Menu');
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Product $product)
     {
-        //
+        return view('admin.products.show', compact('product'));
     }
 
     /**

@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Restaurant;
+
+
 
 
 class ProductController extends Controller
@@ -15,7 +19,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::orderBy('name' , 'ASC')->paginate(10);
+
+        $products = Product::where('restaurant_id', Auth::user()->restaurant->id)->orderBy('name' , 'ASC' )->get();
         return view('admin.products.index' , compact('products'));
     }
 
@@ -79,8 +84,11 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Product $product)
     {
-        //
+        // $product->orders()->detach();
+
+        $product->delete();
+        return redirect()->route('admin.products.index')->with('deleted', 'the product was successfully deleted');
     }
 }

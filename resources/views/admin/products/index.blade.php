@@ -1,6 +1,13 @@
 @extends('layouts.admin')
 
 @section('content')
+
+    @if (session('deleted'))
+    <div class="alert alert-success" role="alert">
+        {{ session('deleted') }}
+    </div>
+    @endif
+
     <h1>Your Menu</h1>
     @include('generals.buttons.create_btn', [
         'route' => route('admin.products.create'),

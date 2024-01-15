@@ -42,6 +42,12 @@ class RestaurantController extends Controller
         $form_data['user_id'] = Auth::id();
 
         $new_restaurant = new Restaurant();
+         // se esiste la chiave image salvo l'immagine nel file system e nel database
+        if(array_key_exists('image', $form_data)) {
+
+            // prima di salvare il file prendo il nome del file per salvarlo nel d
+            $data['image'] = Storage::put('uploads', $form_data['image']);
+        }
         $new_restaurant->fill($form_data);
         $new_restaurant->save();
         if(array_key_exists('types' , $form_data)){

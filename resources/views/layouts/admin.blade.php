@@ -15,7 +15,7 @@
     @include('generals.partials.header')
     <div class="cs-container d-flex">
         @include('generals.partials.aside')
-        <div class="p-4 w-100">
+        <div class="p-4 w-100 content-container">
             @yield('content')
         </div>
     </div>

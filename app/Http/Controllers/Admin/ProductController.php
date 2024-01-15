@@ -60,17 +60,20 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Product $product)
     {
-        //
+
+        return view('admin.products.edit', compact('product'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ProductRequest $request, Product $product)
     {
-        //
+        $form_data = $request->all();
+        $product->update($form_data);
+        return redirect()->route('admin.products.show', compact('product'))->with('success', 'the product was successfully updated');
     }
 
     /**

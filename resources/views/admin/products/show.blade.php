@@ -8,7 +8,8 @@
             </div>
         @endif
 
-        <h1>prodotto creato</h1>
+        <h1>{{ $product->name}}</h1>
+        @include('generals.buttons.edit_btn', ['route'=>route('admin.products.edit' , $product)])
 
     </div>
 @endsection

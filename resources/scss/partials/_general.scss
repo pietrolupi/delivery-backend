@@ -1,5 +1,9 @@
 
 // aside
+body {
+    height: 100vh;
+}
+
 header{
     z-index: 999;
     position: fixed;
@@ -10,6 +14,7 @@ header{
 }
 .cs-container{
     padding-top: 70px;
+
 }
 aside{
     width: 70px;
@@ -40,4 +45,8 @@ aside{
 
 .debug {
     border: 1px solid red;
+}
+
+.content-container {
+    overflow: hidden;
 }

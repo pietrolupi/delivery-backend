@@ -20,8 +20,9 @@
 
         <div class="mb-3">
             <label for="ingredients" class="form-label">Ingredients</label>
-            <input type="text" id="ingredients" name="ingredients"class="form-control
-                                                @error('ingredients')
+            <input type="text" id="ingredients"
+                name="ingredients"class="form-control
+                                                        @error('ingredients')
                 is-invalid
                 @enderror"
                 value="{{ old('ingredients', $product->ingredients) }}">
@@ -41,7 +42,7 @@
         <div class="mb-3">
             <label for="price" class="form-label">Price</label>
             <input type="number" step="0.01" id="price" name="price"class="form-control
-                                            @error('price')
+                                                    @error('price')
             is-invalid
             @enderror"
                 value="{{ old('price', $product->price) }}">
@@ -66,13 +67,19 @@
             <label for="image" class="form-label">Substitute the image</label>
             <input type="file" id="image" name="image"
                 class="form-control
-            @error('image')
-            is-invalid
-            @enderror mb-3"
+                @error('image')
+                is-invalid
+                @enderror mb-3"
                 onchange="showImage(event)" value="{{ old('image', $product->image) }}">
+            <p id="newImageText" style="display: none;">New image:</p>
+            <img id="imagePreview" alt="" class="w-25 mb-3">
             <p>Old image:</p>
-            <img id="thumb" src="{{ asset('storage/app/public/uploads' . $product?->image) }}"
-                onerror="this.src='/img/placeholder.jpg'" alt="{{ $product->name }}" class="w-25">
+            {{-- <img id="thumb" src="{{ asset('storage/app/public/uploads' . $product?->image) }}"
+                onerror="this.src='/img/placeholder.jpg'" alt="{{ $product->name }}" class="w-25"> --}}
+            @if ($product)
+                {{-- @dump($product) --}}
+                <img src="{{ asset('storage/' . $product->image) }}" class="w-25 mb-3" />
+            @endif
 
         </div>
         <button type="submit" class="btn btn-success">Submit</button>
@@ -89,12 +96,17 @@
         });
     });
 
-    // funzione per visualizzare l'anteprima dell'immagine
     function showImage(event) {
-        console.log('mostra img');
-        const thumb = document.getElementById('thumb');
-        // associo a src l'immagine caricata
-        thumb.src = URL.createObjectURL(event.target.files[0]);
+        let input = event.target;
+        let reader = new FileReader();
+        let output = document.getElementById('imagePreview');
+        let newImageText = document.getElementById('newImageText');
 
+        reader.onload = function() {
+            output.src = reader.result;
+            newImageText.style.display = 'block';
+        };
+
+        reader.readAsDataURL(input.files[0]);
     }
 </script>

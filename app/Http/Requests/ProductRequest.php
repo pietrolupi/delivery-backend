@@ -26,7 +26,7 @@ class ProductRequest extends FormRequest
             "ingredients" => "required|min:2|max:255",
             "description" => "max:400",
             "price"=> "required|numeric|between:0,9999",
-            "image"=> "image|mimes:jpeg,png,jpg,gif,svg",
+            "image"=> "image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048'",
 
         ];
 
@@ -50,6 +50,7 @@ class ProductRequest extends FormRequest
 
         'image.image' => 'The image field must be an image file.',
         'image.mimes' => 'The image field must be a file of type: :mimes.',
+        'image.max' => 'The image field cannot exceed 2048 kilobytes.',
     ];
 }
 

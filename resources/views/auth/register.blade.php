@@ -83,18 +83,17 @@
                         </div>
 
                         <div class="mb-4 row">
-                            <label for="restaurant_address" class="col-md-4 col-form-label text-md-right">Restaurant's address</label>
+                            <label for="restaurant_address" class="col-md-4 col-form-label text-md-right">Restaurant Address</label>
                             <div class="col-md-6">
                                 <input
                                 type="text"
                                 id="restaurant_address"
                                 name="restaurant_address"
                                 class="form-control
-                                @error('address')
+                                @error('restaurant_address')
                                 is-invalid
                                 @enderror"
-                                value="{{old('address')}}"
-                                >
+                                value="{{old('restaurant_address')}}">
                                 @error('restaurant_address')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -102,6 +101,7 @@
                                 @enderror
                             </div>
                         </div>
+
                         {{--vat --}}
                         <div class="mb-4 row">
                             <label for="vat" class="col-md-4 col-form-label text-md-right">VAT</label>
@@ -115,8 +115,9 @@
                             </div>
                         </div>
 
-                        <div class="mb-3">
-                            <div class="btn-group d-flex flex-wrap" role="group" aria-label="Basic checkbox toggle button group">
+                        <div class="mb-3 ">
+                            <div class="d-flex gap-2 btn-group d-flex flex-wrap" role="group" aria-label="Basic checkbox toggle button group">
+                            <p class="col-12 col-form-label text-md-right">Select one or more restaurant tipology: </p>
                             @foreach ($types as $type)
                                 <input
                                 name="types[]"

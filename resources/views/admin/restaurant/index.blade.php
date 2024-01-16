@@ -1,14 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
-    @if (session('deleted'))
-        <div class="alert alert-success" role="alert">
-            {{ session('deleted') }}
-        </div>
-    @endif
-
-
-
+    @include('generals.partials.sessions')
+    
     @if (isset($restaurant->user_id))
     <h2>Your restaurant:</h2>
 

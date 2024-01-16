@@ -53,6 +53,7 @@ class ProductController extends Controller
         }else {
             $new_product = new Product();
             $new_product->restaurant_id = $form_data['restaurant_id'];
+            $new_product->visibility = $request->has('visibility') ? 1 : 0;
 
              // se esiste la chiave image salvo l'immagine nel file system e nel database
             if(array_key_exists('image', $form_data)) {
@@ -90,6 +91,7 @@ class ProductController extends Controller
     public function update(ProductRequest $request, Product $product)
     {
         $form_data = $request->all();
+        $form_data['visibility'] = $request->has('visibility') ? 1 : 0;
 
         if(array_key_exists('image', $form_data)){
             if($product->image){

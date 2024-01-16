@@ -26,7 +26,6 @@ class ProductRequest extends FormRequest
             "ingredients" => "required|min:2|max:255",
             "description" => "max:400",
             "price"=> "required|numeric|between:0,9999",
-            "visibility"=> "boolean",
             "image"=> "image|mimes:jpeg,png,jpg,gif,svg",
 
         ];
@@ -48,8 +47,6 @@ class ProductRequest extends FormRequest
         'price.required' => 'The price field is required.',
         'price.numeric' => 'The price field must be a number.',
         'price.between' => 'The price field must be between :min and :max.',
-
-        'visibility.boolean' => 'The visibility field must be a boolean value.',
 
         'image.image' => 'The image field must be an image file.',
         'image.mimes' => 'The image field must be a file of type: :mimes.',

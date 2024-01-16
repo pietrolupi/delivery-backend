@@ -73,6 +73,9 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        if($product->restaurant_id != Auth::user()->restaurant->id){
+            return view('errors.404');
+        }
         return view('admin.products.show', compact('product'));
     }
 
@@ -81,6 +84,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        if($product->restaurant_id != Auth::user()->restaurant->id){
+            return view('errors.404');
+        }
 
         return view('admin.products.edit', compact('product'));
     }

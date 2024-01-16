@@ -75,6 +75,7 @@
                 is-invalid
                 @enderror mb-3"
                 onchange="showImage(event)" value="{{ old('image', $product->image) }}">
+            <span id="errorImage" class="text-danger"></span>
             <p id="newImageText" style="display: none;">Uploaded image preview:</p>
             <img id="imagePreview" alt="" class="w-25 mb-3">
 
@@ -98,11 +99,13 @@
         const ingredients = $('#ingredients');
         const description = $('#description');
         const price = $('#price');
+        const image = $('#image');
 
         const errorName = $('#errorName');
         const errorDescription = $('#errorDescription');
         const errorIngredients = $('#errorIngredients');
         const errorPrice = $('#errorPrice');
+        const errorImage = $('#errorImage');
 
         // FUNZIONI DI VALIDAZIONI E MESSAGGI PER OGNI CAMPO
         function validateName() {
@@ -180,6 +183,36 @@
                 }
             }
 
+         function validateImage() {
+            const allowedFormats = ['jpeg', 'png', 'jpg', 'gif', 'svg', 'webp'];
+            const maxFileSize = 2048; // Kilobytes (2MB)
+
+            const imageVal = image[0].files[0]; // Ottieni il file caricato dall'input
+
+            if (!imageVal) {
+                errorImage.text('Image is required.');
+                image.css('border', '2px solid red');
+                return false;
+            }
+
+            const imageType = imageVal.type.split('/').pop().toLowerCase(); // Ottieni il formato del file
+            const imageSize = imageVal.size / 1024; // Calcola la dimensione in kilobytes
+
+            if (!allowedFormats.includes(imageType)) {
+                errorImage.text('Invalid image format. Allowed formats: jpeg, png, jpg, gif, svg, webp.');
+                image.css('border', '2px solid red');
+                return false;
+            } else if (imageSize > maxFileSize) {
+                errorImage.text('Image size must be 2MB or less.');
+                image.css('border', '2px solid red');
+                return false;
+            } else {
+                errorImage.text('');
+                image.css('border', '');
+                return true;
+            }
+        }
+
 
         // Funzione di validazione generale (mi controlla  TUTTI i campi sopra e mi returna TRUE solo se TUTTI sono TRUE)
         function validateForm() {
@@ -187,17 +220,15 @@
             let isIngredientsValid = validateIngredients();
             let isDescriptionValid = validateDescription();
             let isPriceValid = validatePrice();
+            let isImageValid = validateImage();
 
-            return isNameValid && isIngredientsValid && isDescriptionValid && isPriceValid;
+            return isNameValid && isIngredientsValid && isDescriptionValid && isPriceValid && isImageValid;
             }
 
         // Gestione dell'invio del form (avviene solo se la funzione sopra mi da return TRUE)
         form.on('submit', function (event) {
             if (!validateForm()) {
                 event.preventDefault(); // Impedisci l'invio del form se non è valido
-
-                console.log('Validation Result:', validateForm());
-                console.log('numb Input',  price.val());
             }
     });
 
@@ -206,6 +237,7 @@
         ingredients.on('input', validateIngredients);
         description.on('input', validateDescription);
         price.on('input', validatePrice);
+        image.on('input', validateImage);
     });
 
     /* ------------------------------------------------------------------------------------------------------------------------------ */
@@ -235,7 +267,6 @@
     }
 
 </script>
-
 
 @endsection
 

@@ -20,7 +20,7 @@
                 </a>
             </li>
             <li class="pb-2">
-                <a class="text-white text-decoration-none" href="#">
+                <a class="text-white text-decoration-none" href="{{route('admin.orders.index')}}">
                     <span class="text">Your Orders</span>
                     <i class="fs-1 icon fa-solid fa-receipt"></i>
                 </a>

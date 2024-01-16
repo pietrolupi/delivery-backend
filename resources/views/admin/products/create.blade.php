@@ -71,13 +71,70 @@
         <button type="reset" class="btn btn-danger">Reset</button>
     </form>
 
-@endsection
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#visibility').change(function () {
-            var message = $(this).prop('checked') ? 'Avaliable' : 'Unavaliable';
-            $('#visibilityMessage span').removeClass('text-success text-danger').addClass($(this).prop('checked') ? 'text-success' : 'text-danger').text(message);
+    {{-- client side validation --}}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.querySelector('form');
+            const name = document.getElementById('name');
+            const ingredients = document.getElementById('ingredients');
+            const description = document.getElementById('description');
+            const price = document.getElementById('price');
+
+            // Funzione di validazione
+            function validateForm() {
+                let isValid = true;
+                [name, ingredients, description, price].forEach(function(field) {
+                    if (field.value.trim() === '') {
+                        field.style.border = '1px solid orange'; // Applica lo stile di errore
+                        isValid = false;
+                    } else {
+                        field.style.border = ''; // Rimuovi lo stile di errore
+                    }
+                });
+                return isValid;
+            }
+
+            // Gestione dell'invio del form
+            form.addEventListener('submit', function(event) {
+                if (!validateForm()) {
+                    event.preventDefault(); // Impedisci l'invio del form se non è valido
+                }
+            });
+
+            // Rimuovi lo stile di errore all'input
+            [name, ingredients, description, price].forEach(function(field) {
+                field.addEventListener('input', function() {
+                    this.style.border = '';
+                });
+            });
         });
+
+
+
+
+
+        /* visibility function */
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var checkbox = document.getElementById('visibility');
+            var messageSpan = document.getElementById('visibilityMessage').querySelector('span');
+
+            checkbox.addEventListener('change', function () {
+                var message = checkbox.checked ? 'Avaliable' : 'Unavaliable';
+                messageSpan.textContent = message;
+
+                messageSpan.classList.remove('text-success', 'text-danger');
+                if (checkbox.checked) {
+                    messageSpan.classList.add('text-success');
+                } else {
+                    messageSpan.classList.add('text-danger');
+                }
     });
-</script>
+});
+        </script>
+
+    {{-- ------------------------------------------------------------------------------------ --}}
+
+@endsection
+

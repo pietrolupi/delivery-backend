@@ -41,6 +41,7 @@ class RegisteredUserController extends Controller
             'vat' => ['required', 'string', 'max:13', 'min:13', 'unique:'.User::class],
             'restaurant_name' => ['required', 'string', 'min:2', 'max:255'],
             'restaurant_address' => ['required', 'string', 'min:5', 'max:255'],
+            'types' => ['required', 'array', 'min:1'],
         ],
 
         [
@@ -74,7 +75,9 @@ class RegisteredUserController extends Controller
             'restaurant_address.string' => 'The restaurant address must be a string.',
             'restaurant_address.min' => 'The restaurant address may not be smaller than :min characters.',
             'restaurant_address.max' => 'The restaurant address may not be greater than :max characters.',
-
+            'types.required' => 'Please select at least one type for the restaurant.',
+            'types.array' => 'The selected types must be in array format.',
+            'types.min' => 'Please select at least one type for the restaurant.',
         ]);
 
         $form_data = $request->all();

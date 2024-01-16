@@ -120,18 +120,24 @@
                             <p class="col-12 col-form-label text-md-right">Select one or more restaurant tipology: </p>
                             @foreach ($types as $type)
                                 <input
-                                name="types[]"
-                                id="type_{{$type->id}}"
-                                value="{{$type->id}}"
-                                type="checkbox"
-                                class="btn-check"
-                                autocomplete="off"
-                                @if(old('types') && in_array($type->id, old('types')))
-                                checked
-                                @endif>
+                                    name="types[]"
+                                    id="type_{{$type->id}}"
+                                    value="{{$type->id}}"
+                                    type="checkbox"
+                                    class="btn-check"
+                                    autocomplete="off"
+                                    @if(old('types') && in_array($type->id, old('types')))
+                                        checked
+                                    @endif
+                                >
 
                                 <label class="btn btn-outline-primary" for="type_{{$type->id}}">{{$type->name}}</label>
                             @endforeach
+                            @error('types')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                             </div>
                         </div>
 

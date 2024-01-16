@@ -42,13 +42,13 @@
 
         <div class="mb-3">
             <label for="price" class="form-label">Price</label>
-            <input type="number" step="0.01" id="price" name="price" min="0.01" max="9999.99"
+            <input type="number" step="0.01" id="price" name="price"
                 class="form-control
                 @error('price')
                 is-invalid
                 @enderror"
                 value="{{ old('price') }}">
-            <span id="error-price" class="text-danger"></span>
+            <span id="errorPrice" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
@@ -68,24 +68,30 @@
         </div>
 
         <div class="mb-3">
-            <label for="image" class="form-label">Image</label>
+            <label for="image" class="form-label">Substitute the image</label>
             <input type="file" id="image" name="image"
-                class="form-control mb-3
+                class="form-control
                 @error('image')
                 is-invalid
-                @enderror"
-                onchange="showImage(event)" value="{{ old('image') }}">
-            <img id="thumb" src="{{ asset('storage/img/' . 'placeholder.jpg') }}"
-                onerror="this.src='/img/placeholder.jpg'" alt="">
+                @enderror mb-3"
+                onchange="showImage(event)" value="{{ old('image', $product->image) }}">
+            <p id="newImageText" style="display: none;">Uploaded image preview:</p>
+            <img id="imagePreview" alt="" class="w-25 mb-3">
+
         </div>
+
+
         <button type="submit" class="btn btn-success">Submit</button>
         <button type="reset" class="btn btn-danger">Reset</button>
     </form>
 
-    {{-- client side validation --}}
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+
+/*  CIENT SIDE VALIDATION ------------------------------------------------------------------------------------------------------ */
+
     $(document).ready(function () {
         const form = $('form');
         const name = $('#name');
@@ -95,7 +101,8 @@
 
         const errorName = $('#errorName');
         const errorDescription = $('#errorDescription');
-        const errorIngredients = $('#ingredients');
+        const errorIngredients = $('#errorIngredients');
+        const errorPrice = $('#errorPrice');
 
         // FUNZIONI DI VALIDAZIONI E MESSAGGI PER OGNI CAMPO
         function validateName() {
@@ -121,7 +128,6 @@
 
         function validateIngredients() {
 
-            return true;
             let ingredientsVal = ingredients.val().trim();
             if (ingredientsVal.length === 0) {
                 errorIngredients.text('Ingredients is required.');
@@ -136,7 +142,7 @@
                 ingredients.css('border', '2 px solid red');
                 return false;
             } else {
-                errorIngredients.text('');
+               errorIngredients.text('');
                 ingredients.css('border', '');
                 return true;
             }
@@ -156,10 +162,24 @@
             }
         }
 
-        function validatePrice() {
 
-          return true;
-      }
+        function validatePrice() {
+                let priceVal = price.val().trim();
+                if (priceVal === '') {
+                    errorPrice.text('Price is required.');
+                    price.css('border', '2px solid red');
+                    return false;
+                } else if (isNaN(priceVal) || Number(priceVal) < 0 || Number(priceVal) > 9999) {
+                    errorPrice.text('Price must be a number between 0 and 9999.');
+                    price.css('border', '2px solid red');
+                    return false;
+                } else {
+                    errorPrice.text('');
+                    price.css('border', '');
+                    return true;
+                }
+            }
+
 
         // Funzione di validazione generale (mi controlla  TUTTI i campi sopra e mi returna TRUE solo se TUTTI sono TRUE)
         function validateForm() {
@@ -181,17 +201,41 @@
             }
     });
 
-        // Event listener per i cambiamenti di input
+        // Event listener per i cambiamenti di input DINAMICI
         name.on('input', validateName);
         ingredients.on('input', validateIngredients);
         description.on('input', validateDescription);
         price.on('input', validatePrice);
     });
 
+    /* ------------------------------------------------------------------------------------------------------------------------------ */
+
+    /* Visibility checkbox  */
+    $(document).ready(function() {
+        $('#visibility').change(function() {
+            var message = $(this).prop('checked') ? 'Avaliable' : 'Unavaliable';
+            $('#visibilityMessage span').removeClass('text-success text-danger').addClass($(this).prop(
+                'checked') ? 'text-success' : 'text-danger').text(message);
+        });
+    });
+
+    /* Image Upload Preview */
+    function showImage(event) {
+        let input = event.target;
+        let reader = new FileReader();
+        let output = document.getElementById('imagePreview');
+        let newImageText = document.getElementById('newImageText');
+
+        reader.onload = function() {
+            output.src = reader.result;
+            newImageText.style.display = 'block';
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
 
 </script>
 
-    {{-- ------------------------------------------------------------------------------------ --}}
 
 @endsection
 

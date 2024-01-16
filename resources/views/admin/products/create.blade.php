@@ -46,11 +46,12 @@
         <div class="mb-3">
             <label for="visibility" class="form-label">Disponibility</label>
             <div class="form-check">
-                <input value="{{ old('visibility', $product->visibility) }}" {{ $product->visibility == 1 ? 'checked' : 0 }} type="checkbox" id="visibility" name="visibility" class="form-check-input">
+                <input  type="checkbox" id="visibility" name="visibility" {{ old('visibility') == 1 ? 'checked' : '' }} class="form-check-input" value="1" >
+
                 <label class="form-check-label" for="visibility">
                     <div id="visibilityMessage">
-                        <span class="{{ $product->visibility == 1 ? 'text-success' : 'text-danger' }}">
-                            {{ $product->visibility == 1 ? 'Avaliable' : 'Unavaliable' }}
+                        <span class="{{old('visibility') == 1 ? 'text-success' : 'text-danger' }}">
+                            {{ old('visibility') == 1 ? 'Avaliable' : 'Unavaliable' }}
                         </span>
                     </div>
                 </label>

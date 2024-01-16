@@ -32,10 +32,6 @@
         @endif
         <div class="btns d-flex gap-2">
             @include('generals.buttons.back_btn', ['route' => route('admin.restaurant.index', $restaurant)])
-            @include('generals.buttons.delete_btn', [
-                'route' => route('admin.restaurant.destroy', $restaurant),
-                'name' => $restaurant->name,
-            ])
         </div>
     </div>
 

@@ -10,7 +10,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="post" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="mb-4 row">
@@ -128,11 +128,7 @@
 
                         <div class="mb-3">
                             <label for="image" class="form-label">Image</label>
-                            <input type="file" id="image" name="image" class="form-control mb-3
-                                @error('image')
-                                is-invalid
-                                @enderror"
-                                onchange="showImage(event)" value="{{ old('image') }}">
+                            <input type="file" id="image" name="image" class="form-control mb-3 @error('image') is-invalid @enderror" value="{{ old('image') }}">
                             <img id="thumb" src="/img/placeholder.jpg" alt="">
                         </div>
 

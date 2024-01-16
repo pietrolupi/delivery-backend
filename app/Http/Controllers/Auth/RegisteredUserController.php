@@ -41,7 +41,6 @@ class RegisteredUserController extends Controller
             'vat' => ['required', 'string', 'max:13', 'min:13', 'unique:'.User::class],
             'restaurant_name' => ['required', 'string', 'max:255'],
             'restaurant_address' => ['required', 'string', 'max:255'],
-            'restaurant_image' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
         ],
 
         [
@@ -74,40 +73,38 @@ class RegisteredUserController extends Controller
             'restaurant_address.string' => 'The restaurant address must be a string.',
             'restaurant_address.max' => 'The restaurant address may not be greater than :max characters.',
 
-            'image.image' => 'The restaurant image must be an image.',
-            'image.mimes' => 'The restaurant image must be a file of type: :values.',
-            'image.max' => 'The restaurant image may not be greater than :max kilobytes.',
         ]);
 
         $form_data = $request->all();
 
-$user = User::create([
-    'name' => $form_data['name'],
-    'email' => $form_data['email'],
-    'password' => Hash::make($form_data['password']),
-    'vat' => $form_data['vat'],
-]);
+        $user = User::create([
+            'name' => $form_data['name'],
+            'email' => $form_data['email'],
+            'password' => Hash::make($form_data['password']),
+            'vat' => $form_data['vat'],
+        ]);
 
-$restaurant = Restaurant::create([
-    'user_id' => $user->id,
-    'name' => $form_data['restaurant_name'],
-    'address' => $form_data['restaurant_address'],
-]);
+        $restaurant = new Restaurant([
+            'user_id' => $user->id,
+            'name' => $form_data['restaurant_name'],
+            'address' => $form_data['restaurant_address'],
+        ]);
 
-if(array_key_exists('image', $form_data)) {
+        if ($request->hasFile('image')) {
+            $form_data['image'] = $request->file('image')->store('uploads');
+            $restaurant->image = $form_data['image'];
+        }
 
-    $form_data['image'] = Storage::put('uploads', $form_data['image']);
-}
+        $restaurant->save();
 
-$restaurant->save(); // Guarda el restaurante después de asignar la ruta de la imagen
+        if (!empty($form_data['types'])) {
+            $restaurant->types()->attach($form_data['types']);
+        }
 
-if ($form_data['types']) {
-    $restaurant->types()->attach($form_data['types']);
-}
-event(new Registered($user));
+        event(new Registered($user));
 
-Auth::login($user);
+        Auth::login($user);
 
-return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::HOME);
     }
 }

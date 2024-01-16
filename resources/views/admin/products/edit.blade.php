@@ -76,17 +76,21 @@
                 is-invalid
                 @enderror mb-3"
                 onchange="showImage(event)" value="{{ old('image', $product->image) }}">
-            <span id="errorImage" class="text-danger"></span>
-            <p id="newImageText" style="display: none;">New image:</p>
-            <img id="imagePreview" alt="" class="w-25 mb-3">
-            <p>Old image:</p>
-            {{-- <img id="thumb" src="{{ asset('storage/app/public/uploads' . $product?->image) }}"
-                onerror="this.src='/img/placeholder.jpg'" alt="{{ $product->name }}" class="w-25"> --}}
-            @if ($product)
-                {{-- @dump($product) --}}
-                <img src="{{ asset('storage/' . $product->image) }}" class="w-25 mb-3" />
-            @endif
-
+            <div class="d-flex gap-3" style="width:300px">
+                <div id="newImageText" style="display: none; width:140px;">
+                    <p>New image:</p>
+                    <img id="imagePreview" alt="" class="w-100 mb-3">
+                </div>
+                <div style="width:140px">
+                    <p>Old image:</p>
+                    {{-- <img id="thumb" src="{{ asset('storage/app/public/uploads' . $product?->image) }}"
+                        onerror="this.src='/img/placeholder.jpg'" alt="{{ $product->name }}" class="w-25"> --}}
+                    @if ($product)
+                        {{-- @dump($product) --}}
+                        <img src="{{ asset('storage/' . $product->image) }}" class="w-100 mb-3" />
+                    @endif
+                </div>
+            </div>
         </div>
         <button type="submit" class="btn btn-success">Submit</button>
         <button type="reset" class="btn btn-danger">Reset</button>
@@ -103,13 +107,13 @@
         const ingredients = $('#ingredients');
         const description = $('#description');
         const price = $('#price');
-        const image = $('#image');
+
 
         const errorName = $('#errorName');
         const errorDescription = $('#errorDescription');
         const errorIngredients = $('#errorIngredients');
         const errorPrice = $('#errorPrice');
-        const errorImage = $('#errorImage');
+
 
         // FUNZIONI DI VALIDAZIONI E MESSAGGI PER OGNI CAMPO
         function validateName() {
@@ -187,45 +191,12 @@
                 }
             }
 
-
-        function validateImage() {
-            const allowedFormats = ['jpeg', 'png', 'jpg', 'gif', 'svg', 'webp'];
-            const maxFileSize = 2048; // Kilobytes (2MB)
-
-            const imageVal = image[0].files[0]; // Ottieni il file caricato dall'input
-
-            if (!imageVal) {
-                errorImage.text('Image is required.');
-                image.css('border', '2px solid red');
-                return false;
-            }
-
-            const imageType = imageVal.type.split('/').pop().toLowerCase(); // Ottieni il formato del file
-            const imageSize = imageVal.size / 1024; // Calcola la dimensione in kilobytes
-
-            if (!allowedFormats.includes(imageType)) {
-                errorImage.text('Invalid image format. Allowed formats: jpeg, png, jpg, gif, svg, webp.');
-                image.css('border', '2px solid red');
-                return false;
-            } else if (imageSize > maxFileSize) {
-                errorImage.text('Image size must be 2MB or less.');
-                image.css('border', '2px solid red');
-                return false;
-            } else {
-                errorImage.text('');
-                image.css('border', '');
-                return true;
-            }
-        }
-
-
         // Funzione di validazione generale (mi controlla  TUTTI i campi sopra e mi returna TRUE solo se TUTTI sono TRUE)
         function validateForm() {
             let isNameValid = validateName();
             let isIngredientsValid = validateIngredients();
             let isDescriptionValid = validateDescription();
             let isPriceValid = validatePrice();
-            let isImageValid = validateImage();
             return isNameValid && isIngredientsValid && isDescriptionValid && isPriceValid && isImageValid;
             }
 
@@ -242,7 +213,6 @@
         ingredients.on('input', validateIngredients);
         description.on('input', validateDescription);
         price.on('input', validatePrice);
-        image.on('input', validateImage);
     });
 
     /* ------------------------------------------------------------------------------------------------------------------------------ */

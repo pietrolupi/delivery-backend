@@ -32,13 +32,12 @@
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
-                            @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
                         </div>
 
                         <div class="mb-4 row">
@@ -63,75 +62,90 @@
                             </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="restaurant_name" class="form-label">Restaurant Name</label>
-                            <input
-                            type="text"
-                            id="restaurant_name"
-                            name="restaurant_name"
-                            class="form-control
-                            @error('restaurant_name')
-                            is-invalid
-                            @enderror"
-                            value="{{old('restaurant_name')}}">
+                        <div class="mb-4 row">
+                            <label for="restaurant_name" class="col-md-4 col-form-label text-md-right">Restaurant Name</label>
+                            <div class="col-md-6">
+                                <input
+                                type="text"
+                                id="restaurant_name"
+                                name="restaurant_name"
+                                class="form-control
+                                @error('restaurant_name')
+                                is-invalid
+                                @enderror"
+                                value="{{old('restaurant_name')}}">
+                                @error('restaurant_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="restaurant_address" class="form-label">Restaurant's address</label>
-                            <input
-                            type="text"
-                            id="restaurant_address"
-                            name="restaurant_address"
-                            class="form-control
-                            @error('address')
-                            is-invalid
-                            @enderror"
-                            value="{{old('address')}}"
-                            >
+                        <div class="mb-4 row">
+                            <label for="restaurant_address" class="col-md-4 col-form-label text-md-right">Restaurant's address</label>
+                            <div class="col-md-6">
+                                <input
+                                type="text"
+                                id="restaurant_address"
+                                name="restaurant_address"
+                                class="form-control
+                                @error('address')
+                                is-invalid
+                                @enderror"
+                                value="{{old('address')}}"
+                                >
+                                @error('restaurant_address')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                         </div>
                         {{--vat --}}
                         <div class="mb-4 row">
                             <label for="vat" class="col-md-4 col-form-label text-md-right">VAT</label>
-
                             <div class="col-md-6">
                                 <input id="vat" type="text" class="form-control @error('vat') is-invalid @enderror" name="vat" value="{{ old('vat') }}" required autocomplete="vat" autofocus>
+                                @error('vat')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-
-                            @error('vat')
-                            <div class="text-danger w-100 text-center" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </div>
-                            @enderror
                         </div>
 
                         <div class="mb-3">
                             <div class="btn-group d-flex flex-wrap" role="group" aria-label="Basic checkbox toggle button group">
-                                @foreach ($types as $type)
+                            @foreach ($types as $type)
+                                <input
+                                name="types[]"
+                                id="type_{{$type->id}}"
+                                value="{{$type->id}}"
+                                type="checkbox"
+                                class="btn-check"
+                                autocomplete="off"
+                                @if(old('types') && in_array($type->id, old('types')))
+                                checked
+                                @endif>
 
-                                    <input
-                                    name="types[]"
-                                    id="type_{{$type->id}}"
-                                    value="{{$type->id}}"
-                                    type="checkbox"
-                                    class="btn-check"
-                                    autocomplete="off"
-                                    @if(old('types') && in_array($type->id, old('types')))
-                                    checked
-                                    @endif>
-
-                                    <label class="btn btn-outline-primary" for="type_{{$type->id}}">{{$type->name}}</label>
-
-                                @endforeach
-
+                                <label class="btn btn-outline-primary" for="type_{{$type->id}}">{{$type->name}}</label>
+                            @endforeach
                             </div>
                         </div>
 
                         <div class="mb-3">
                             <label for="image" class="form-label">Image</label>
-                            <input type="file" id="image" name="image" class="form-control mb-3 @error('image') is-invalid @enderror" value="{{ old('image') }}">
-                            <img id="thumb" src="/img/placeholder.jpg" alt="">
-                        </div>
+                            <input type="file" id="image" name="image"
+                                class="form-control
+                                @error('image')
+                                is-invalid
+                                @enderror mb-3"
+                                onchange="showImage(event)" value="{{ old('image') }}">
+                            <p id="newImageText" style="display: none;">Uploaded image preview:</p>
+                            <img id="imagePreview" alt="" class="w-25 mb-3">
 
+                        </div>
                         <div class="mb-4 row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

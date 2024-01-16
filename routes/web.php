@@ -6,6 +6,9 @@ use App\Http\Controllers\Guest\PageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\RestaurantController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\OrderController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,6 +45,7 @@ Route::middleware(['auth','verified'])
         Route::get('/', [DashboardController::class, 'index'])->name('home');
         Route::resource('restaurant', RestaurantController::class);
         Route::resource('products', ProductController::class);
+        Route::resource('orders', OrderController::class);
     });
 
 require __DIR__.'/auth.php';

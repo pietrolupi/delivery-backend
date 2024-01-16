@@ -22,6 +22,14 @@
                     </div>
                     <div class="card-body">
                         <h6 class="card-text">{{ $product->name }}</h6>
+
+                        <div class="buttons d-flex gap-2">
+                            @include('generals.buttons.edit_btn', ['route'=>route('admin.products.edit' , $product)])
+                            @include('generals.buttons.delete_btn', [
+                                'route' => route('admin.products.destroy', $product),
+                                'name' => $product->name,
+                            ])
+                        </div>
                     </div>
                 </div>
 

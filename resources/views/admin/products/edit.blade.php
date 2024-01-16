@@ -21,7 +21,7 @@
         <div class="mb-3">
             <label for="ingredients" class="form-label">Ingredients</label>
             <input type="text" id="ingredients" name="ingredients"class="form-control
-                        @error('ingredients')
+                                                @error('ingredients')
                 is-invalid
                 @enderror"
                 value="{{ old('ingredients', $product->ingredients) }}">
@@ -41,7 +41,7 @@
         <div class="mb-3">
             <label for="price" class="form-label">Price</label>
             <input type="number" step="0.01" id="price" name="price"class="form-control
-                    @error('price')
+                                            @error('price')
             is-invalid
             @enderror"
                 value="{{ old('price', $product->price) }}">
@@ -71,7 +71,7 @@
             @enderror mb-3"
                 onchange="showImage(event)" value="{{ old('image', $product->image) }}">
             <p>Old image:</p>
-            <img id="thumb" src="{{ asset('storage/img' . $product?->image) }}"
+            <img id="thumb" src="{{ asset('storage/app/public/uploads' . $product?->image) }}"
                 onerror="this.src='/img/placeholder.jpg'" alt="{{ $product->name }}" class="w-25">
 
         </div>
@@ -88,4 +88,13 @@
                 'checked') ? 'text-success' : 'text-danger').text(message);
         });
     });
+
+    // funzione per visualizzare l'anteprima dell'immagine
+    function showImage(event) {
+        console.log('mostra img');
+        const thumb = document.getElementById('thumb');
+        // associo a src l'immagine caricata
+        thumb.src = URL.createObjectURL(event.target.files[0]);
+
+    }
 </script>

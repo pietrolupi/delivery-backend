@@ -29,8 +29,8 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        $types = Type::all();
-        return view('admin.restaurant.create', compact('types'));
+        /* $types = Type::all();
+        return view('admin.restaurant.create', compact('types')); */
     }
 
     /**
@@ -88,9 +88,8 @@ class RestaurantController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Restaurant $restaurant)
+    public function destroy()
     {
-        $restaurant->delete();
-        return redirect()->route('admin.restaurant.index')->with('deleted' , "$restaurant->name was deleted");
+
     }
 }

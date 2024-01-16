@@ -66,13 +66,19 @@
             <label for="image" class="form-label">Substitute the image</label>
             <input type="file" id="image" name="image"
                 class="form-control
-            @error('image')
-            is-invalid
-            @enderror mb-3"
+                @error('image')
+                is-invalid
+                @enderror mb-3"
                 onchange="showImage(event)" value="{{ old('image', $product->image) }}">
+            <p id="newImageText" style="display: none;">New image:</p>
+            <img id="imagePreview" alt="" class="w-25 mb-3">
             <p>Old image:</p>
-            <img id="thumb" src="{{ asset('storage/img' . $product?->image) }}"
-                onerror="this.src='/img/placeholder.jpg'" alt="{{ $product->name }}" class="w-25">
+            {{-- <img id="thumb" src="{{ asset('storage/img' . $product?->image) }}"
+                onerror="this.src='/img/placeholder.jpg'" alt="{{ $product->name }}" class="w-25"> --}}
+            @if ($product)
+                {{-- @dump($product) --}}
+                <img src="{{ asset("storage/" . $product->image) }}" class="w-25 mb-3"/>
+            @endif
 
         </div>
         <button type="submit" class="btn btn-success">Submit</button>
@@ -88,4 +94,18 @@
                 'checked') ? 'text-success' : 'text-danger').text(message);
         });
     });
+
+    function showImage(event) {
+        let input = event.target;
+        let reader = new FileReader();
+        let output = document.getElementById('imagePreview');
+        let newImageText = document.getElementById('newImageText');
+
+        reader.onload = function () {
+            output.src = reader.result;
+            newImageText.style.display = 'block';
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
 </script>

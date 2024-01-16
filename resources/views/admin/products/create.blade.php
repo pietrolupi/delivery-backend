@@ -5,7 +5,7 @@
     <h2>Create your product</h2>
     <form class="form-group" action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <input type="hidden" name="restaurant_id" value="{{ Auth::user()->restaurant->id }}">
+        <input required type="hidden" name="restaurant_id" value="{{ Auth::user()->restaurant->id }}">
         <div class="mb-3">
             <label for="name" class="form-label">Product Name</label>
             <input type="text" id="name" name="name"
@@ -14,6 +14,7 @@
                 is-invalid
                 @enderror"
                 value="{{ old('name') }}">
+                <span id="errorName" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
@@ -24,6 +25,7 @@
                 is-invalid
                 @enderror"
                 value="{{ old('ingredients') }}">
+                <span id="errorIngredients" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
@@ -35,16 +37,18 @@
                 @enderror"
                 value="{{ old('description') }}">
             </textarea>
+            <span id="errorDescription" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
             <label for="price" class="form-label">Price</label>
-            <input type="number" step="0.01" id="price" name="price"
+            <input type="number" step="0.01" id="price" name="price" min="0.01" max="9999.99"
                 class="form-control
                 @error('price')
                 is-invalid
                 @enderror"
                 value="{{ old('price') }}">
+            <span id="error-price" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
@@ -81,44 +85,111 @@
     {{-- client side validation --}}
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            const form = $('form');
-            const name = $('#name');
-            const ingredients = $('#ingredients');
-            const description = $('#description');
-            const price = $('#price');
+<script>
+    $(document).ready(function () {
+        const form = $('form');
+        const name = $('#name');
+        const ingredients = $('#ingredients');
+        const description = $('#description');
+        const price = $('#price');
 
-            // Funzione di validazione
-            function validateForm() {
-                let isValid = true;
-                [name, ingredients, description, price].forEach(function (field) {
-                    if (field.val().trim() === '') {
-                        field.css('border', '1px solid orange'); // Applica lo stile di errore
-                        isValid = false;
-                    } else {
-                        field.css('border', ''); // Rimuovi lo stile di errore
-                    }
-                });
-                return isValid;
+        const errorName = $('#errorName');
+        const errorDescription = $('#errorDescription');
+        const errorIngredients = $('#ingredients');
+
+        // FUNZIONI DI VALIDAZIONI E MESSAGGI PER OGNI CAMPO
+        function validateName() {
+            let nameVal = name.val().trim();
+            if (nameVal.length === 0) {
+                errorName.text('Name is required.');
+                name.css('border', '2px solid red');
+                return false;
+            } else if (nameVal.length < 3) {
+                errorName.text('Name must be at least 3 characters.');
+                name.css('border', '2px solid red');
+                return false;
+            } else if (nameVal.length > 255) {
+                errorName.text('Name must be less than 120 characters.');
+                name.css('border', '2px solid red');
+                return false;
+            } else {
+                errorName.text('');
+                name.css('border', '');
+                return true;
+            }
+        }
+
+        function validateIngredients() {
+
+            return true;
+            let ingredientsVal = ingredients.val().trim();
+            if (ingredientsVal.length === 0) {
+                errorIngredients.text('Ingredients is required.');
+                ingredients.css('border', '2 px solid red');
+                return false;
+            } else if (ingredientsVal.length < 2) {
+                errorIngredients.text('Ingredients must be at least 2 characters.');
+                ingredients.css('border', '2 px solid red');
+                return false;
+            } else if (ingredientsVal.length > 255) {
+                errorIngredients.text('Ingredients\' text must be less than 255 characters.');
+                ingredients.css('border', '2 px solid red');
+                return false;
+            } else {
+                errorIngredients.text('');
+                ingredients.css('border', '');
+                return true;
+            }
+        }
+
+        function validateDescription() {
+
+            let descriptionVal = description.val().trim();
+            if (descriptionVal.length > 400) {
+                errorDescription.text('Description\'s text must be less than 400 characters.');
+                description.css('border', '2px solid red');
+                return false;
+            } else {
+                errorDescription.text('');
+                description.css('border', '');
+                return true;
+            }
+        }
+
+        function validatePrice() {
+
+          return true;
+      }
+
+        // Funzione di validazione generale (mi controlla  TUTTI i campi sopra e mi returna TRUE solo se TUTTI sono TRUE)
+        function validateForm() {
+            let isNameValid = validateName();
+            let isIngredientsValid = validateIngredients();
+            let isDescriptionValid = validateDescription();
+            let isPriceValid = validatePrice();
+
+            return isNameValid && isIngredientsValid && isDescriptionValid && isPriceValid;
             }
 
-            // Gestione dell'invio del form
-            form.on('submit', function (event) {
-                if (!validateForm()) {
-                    event.preventDefault(); // Impedisci l'invio del form se non è valido
-                    console.log('Validation failed');
-                }
-            });
+        // Gestione dell'invio del form (avviene solo se la funzione sopra mi da return TRUE)
+        form.on('submit', function (event) {
+            if (!validateForm()) {
+                event.preventDefault(); // Impedisci l'invio del form se non è valido
 
-            // Rimuovi lo stile di errore all'input
-            [name, ingredients, description, price].forEach(function (field) {
-                field.on('input', function () {
-                    $(this).css('border', '');
-                });
-            });
-        });
-    </script>
+                console.log('Validation Result:', validateForm());
+                console.log('numb Input',  price.val());
+            }
+    });
+
+        // Event listener per i cambiamenti di input
+        name.on('input', validateName);
+        ingredients.on('input', validateIngredients);
+        description.on('input', validateDescription);
+        price.on('input', validatePrice);
+    });
+
+
+</script>
 
     {{-- ------------------------------------------------------------------------------------ --}}
 

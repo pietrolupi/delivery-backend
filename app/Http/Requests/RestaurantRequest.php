@@ -26,3 +26,4 @@ class RestaurantRequest extends FormRequest
         ];
     }
 }
+

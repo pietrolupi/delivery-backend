@@ -118,7 +118,7 @@
                     name.css('border', '2px solid red');
                     return false;
                 } else if (nameVal.length > 255) {
-                    errorName.text('Name must be less than 120 characters.');
+                    errorName.text('Name must be less than 255 characters.');
                     name.css('border', '2px solid red');
                     return false;
                 } else {

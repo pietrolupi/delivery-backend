@@ -96,7 +96,7 @@
 
                         <div class="mb-3">
                             <div class="d-flex gap-2 btn-group d-flex flex-wrap" role="group" aria-label="Basic checkbox toggle button group">
-                                <p class="col-12 col-form-label text-md-right">Select one or more restaurant typology: </p>
+                                <p class="col-12 col-form-label text-md-right">Select one or more restaurant tipology: &ast; </p>
                                 @foreach ($types as $type)
                                 <input
                                     name="types[]"

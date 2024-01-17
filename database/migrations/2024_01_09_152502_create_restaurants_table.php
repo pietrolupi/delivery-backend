@@ -22,7 +22,7 @@ return new class extends Migration
             ->onDelete('cascade');
             $table->string('name');
             $table->string('address');
-            $table->string('image')->nullable();
+            $table->string('image')->nullable()->default('img/placeholder.jpg');
             $table->timestamps();
         });
     }

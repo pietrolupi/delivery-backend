@@ -3,11 +3,12 @@
 @section('content')
     @include('generals.partials.sessions')
     <h2>Create your product</h2>
+    <p>Note: Fields marked with an asterisk &ast; are mandatory.</p>
     <form class="form-group" action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <input required type="hidden" name="restaurant_id" value="{{ Auth::user()->restaurant->id }}">
         <div class="mb-3">
-            <label for="name" class="form-label">Product Name</label>
+            <label for="name" class="form-label">Product Name &ast;</label>
             <input type="text" id="name" name="name"
                 class="form-control
                 @error('name')
@@ -18,7 +19,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="ingredients" class="form-label">Ingredients</label>
+            <label for="ingredients" class="form-label">Ingredients &ast;</label>
             <input type="text" id="ingredients" name="ingredients"
                 class="form-control
                 @error('ingredients')
@@ -41,7 +42,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="price" class="form-label">Price</label>
+            <label for="price" class="form-label">Price &ast;</label>
             <input type="number" step="0.01" id="price" name="price" min="0.01" max="9999.99"
                 class="form-control
                 @error('price')

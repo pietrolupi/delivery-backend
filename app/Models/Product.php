@@ -14,7 +14,7 @@ class Product extends Model
     }
 
     public function orders(){
-        return $this->belongsToMany(Order::class)->using(OrderProduct::class)->withPivot(['order_quantity']);
+        return $this->belongsToMany(Order::class)->using(OrderProduct::class)->withPivot(['product _quantity']);
     }
 
     protected $fillable = [

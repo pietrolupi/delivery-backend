@@ -10,7 +10,7 @@ class Order extends Model
     use HasFactory;
 
     public function products(){
-        return $this->belongsToMany(Product::class)->using(OrderProduct::class)->withPivot(['order_quantity']);
+        return $this->belongsToMany(Product::class)->using(OrderProduct::class)->withPivot(['product_quantity']);
     }
 
     protected $fillable = [

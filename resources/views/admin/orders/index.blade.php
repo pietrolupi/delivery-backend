@@ -15,8 +15,9 @@
           </tr>
         </thead>
         <tbody>
+
         @forelse ($orders as $order)
-        @dd($order)
+
             <td>{{$order->date}}</td>
             <td>{{$order->total_price}}</td>
             <td>{{$order->customer_name}}</td>
@@ -24,9 +25,22 @@
             <td>{{$order->customer_email}}</td>
             <td>{{$order->customer_phone}}</td>
 
-            @foreach ($order->products as $product )
-                <p>{{$product->name}}</p>
-            @endforeach
+            <td>
+                <ul>
+                    @foreach ($order->products as $product )
+
+                    <li class="text-decoration-none list-unstyled">
+                        <span><strong>{{$product->name}}</strong></span> <span> : {{$product->pivot->product_quantity}}</span>
+                    </li>
+
+             {{--
+                    <span>{{$product->pivot_product_quantity}}</span> --}}
+
+
+                @endforeach
+                </ul>
+            </td>
+
 
         @empty
             <td>No orders yet!</td>

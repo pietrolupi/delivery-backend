@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
 
+
 class OrderController extends Controller
 {
     /**
@@ -16,6 +17,7 @@ class OrderController extends Controller
     {
 
         $userId = Auth::id();
+
 
         $orders = Order::whereHas('products', function ($query) use ($userId) {
                 $query->whereHas('restaurant', function ($query) use ($userId) {

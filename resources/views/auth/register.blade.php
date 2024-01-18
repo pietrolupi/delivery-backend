@@ -31,7 +31,13 @@
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
                                 <span id="errorEmail" class="text-danger"></span>
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
+
                         </div>
 
                         <div class="mb-4 row">
@@ -91,7 +97,13 @@
                             <div class="col-md-6">
                                 <input id="vat" type="text" class="form-control @error('vat') is-invalid @enderror" name="vat" value="{{ old('vat') }}" required autocomplete="vat" autofocus>
                                 <span id="errorVat" class="text-danger"></span>
+                                @error('vat')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
+
                         </div>
 
                         <div class="mb-3">
@@ -122,7 +134,7 @@
 
 
                         <div class="mb-3">
-                            <label for="image" class="form-label">Image</label>
+                            <label for="image" class="form-label">Image &ast;</label>
                             <input type="file" id="image" name="image"
                                     class="form-control @error('image') is-invalid @enderror mb-3"
                                     onchange="showImage(event)" value="{{ old('image') }}">

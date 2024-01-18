@@ -6,7 +6,7 @@
 
 
         <div class="col-md-8">
-            <p>Note: Fields marked with an asterisk * are mandatory.</p>
+            <p>Note: Fields marked with an asterisk &ast; are mandatory.</p>
             <div class="card">
 
                 <div class="card-header">{{ __('Register') }}</div>

@@ -13,7 +13,7 @@
 
         @foreach ($products as $product)
             <a href="{{ route('admin.products.show', $product) }}" class="text-decoration-none">
-                <div class="card product d-flex p-2 flex-column align-items-center justify-content-center{{ $product->visibility == 0 ? 'unavaliable' : '' }}"
+                <div class="card product d-flex p-2 flex-column align-items-center justify-content-center {{ $product->visibility == 0 ? 'unavaliable' : '' }}"
                     style="width: 15rem;">
                     <div class="image d-flex align-items-center justify-content-center">
                         <img src="{{ asset('storage/' . $product->image) }}"

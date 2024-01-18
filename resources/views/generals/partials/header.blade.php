@@ -3,7 +3,7 @@
         <div class="d-flex justify-content-between align-items-center w-100 h-100">
             <a class="navbar-brand fs-4 h-100" href="{{ route('home')}}">
                 <img src="/img/logo.jpg" alt="Deliveboo_logo" class="logo h-100 p-2">
-                <span class= "brand">Deliveboo</span></a>
+                <span class= "brand">DeliveBoo</span></a>
             <div class="d-flex align-items-center h-100 ">
                 <ul class="d-flex align-items-center m-0 gap-3 h-100 list-unstyled">
                     @guest

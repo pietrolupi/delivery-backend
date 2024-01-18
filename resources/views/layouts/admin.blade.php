@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="icon" type="image/svg+xml" href="/img/reshot-icon-food-addiction-KME7TXCDG4.svg" />
+    <title>DeliveBoo</title>
     <!-- using Vite -->
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
     {{-- fontawesome --}}

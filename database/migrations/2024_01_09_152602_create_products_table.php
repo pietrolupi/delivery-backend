@@ -28,7 +28,7 @@ return new class extends Migration
             $table->text('description', 400)->nullable();
             $table->decimal('price', 6, 2)->unsigned();
             $table->binary('visibility');
-            $table->string('image')->nullable()->default('img/placeholder.jpg');
+            $table->string('image')->nullable();
 
             $table->timestamps();
         });

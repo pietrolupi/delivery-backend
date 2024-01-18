@@ -43,11 +43,17 @@ class PageController extends Controller
 
         return response()->json($types);
     }
+    //Funzione dettaglio ristorante
+    public function getRestaurantById($id){
 
-    public function getRestaurants($type_id){
-        $type = Type::where('id', $type_id)->with('restaurants')->first();
+        $restaurant = Restaurant::with('products')->where('id', $id)->first();
 
-        return response()->json($type);
+        foreach($restaurant->products as $product){
+            $product->image ? $product->image = asset('storage/'. $product->image) : $product->image = asset('img/placeholder.jpg');
+        }
+
+        return response()->json($restaurant);
+
     }
 
 }

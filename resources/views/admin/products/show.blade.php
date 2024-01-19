@@ -68,7 +68,7 @@
 
     <script>
         // function to show modal
-        function showConfirmationModal() {
+        function showDeleteModal() {
             $('#deleteModal').modal('show');
         }
     </script>

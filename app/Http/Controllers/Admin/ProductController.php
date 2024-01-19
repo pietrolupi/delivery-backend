@@ -49,7 +49,7 @@ class ProductController extends Controller
         $exist = Product::where('name', $form_data['name'])->where('restaurant_id', $form_data['restaurant_id'])->first();
 
         if($exist) {
-            return redirect()->route('admin.products.create')->with('error', 'this product is already in your Menu');
+            return redirect()->route('admin.products.create')->with('error', 'This product is already in your Menu');
         }else {
             $new_product = new Product();
             $new_product->restaurant_id = $form_data['restaurant_id'];
@@ -64,7 +64,7 @@ class ProductController extends Controller
 
             $new_product->fill($form_data);
             $new_product->save();
-            return redirect()->route('admin.products.show', $new_product)->with('success', 'the product was successfully added in your Menu');
+            return redirect()->route('admin.products.show', $new_product)->with('success', 'The product was successfully added in your Menu');
         }
     }
 
@@ -108,7 +108,7 @@ class ProductController extends Controller
         }
 
         $product->update($form_data);
-        return redirect()->route('admin.products.show', compact('product'))->with('success', 'the product was successfully updated');
+        return redirect()->route('admin.products.show', compact('product'))->with('success', 'The product was successfully updated');
     }
 
     /**
@@ -119,6 +119,6 @@ class ProductController extends Controller
         // $product->orders()->detach();
 
         $product->delete();
-        return redirect()->route('admin.products.index')->with('deleted', 'the product was successfully deleted');
+        return redirect()->route('admin.products.index')->with('deleted', 'The product was successfully deleted');
     }
 }

@@ -69,7 +69,7 @@
     <script>
         // function to show modal
         function showConfirmationModal() {
-            $('#confirmationModal').modal('show');
+            $('#deleteModal').modal('show');
         }
     </script>
 @endsection

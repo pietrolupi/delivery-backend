@@ -40,6 +40,9 @@ class PageController extends Controller
     public function getTypes(){
 
         $types = Type::with('restaurants')->get();
+        foreach($types as $type){
+            $type->image = asset('storage/'. $type->image);
+        }
 
         return response()->json($types);
     }

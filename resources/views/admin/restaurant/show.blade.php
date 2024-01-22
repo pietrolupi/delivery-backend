@@ -25,6 +25,7 @@
             </div>
             <div class="text">
                 <p>Address: {{ $restaurant->address }}</p>
+                <p>VAT: {{ $user->vat }}</p>
             </div>
         </div>
 

@@ -60,14 +60,14 @@ class RestaurantController extends Controller
      * Display the specified resource.
      */
     public function show(Restaurant $restaurant)
-    {
-
-        if($restaurant->user_id != Auth::id()){
-            return view('errors.404');
-        }
-
-        return view('admin.restaurant.show' , compact('restaurant'));
+{
+    if($restaurant->user_id != Auth::id()){
+        return view('errors.404');
     }
+    $user = Auth::user();
+
+    return view('admin.restaurant.show', compact('restaurant', 'user'));
+}
 
     /**
      * Show the form for editing the specified resource.

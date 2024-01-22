@@ -46,7 +46,10 @@ class PageController extends Controller
     //Funzione dettaglio ristorante
     public function getRestaurantById($id){
 
-        $restaurant = Restaurant::with('products')->where('id', $id)->first();
+        $restaurant = Restaurant::with('products', 'types')->where('id', $id)->first();
+
+
+        $restaurant->image = asset('storage/'. $restaurant->image);
 
         foreach($restaurant->products as $product){
             $product->image ? $product->image = asset('storage/'. $product->image) : $product->image = asset('img/placeholder.jpg');

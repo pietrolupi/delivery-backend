@@ -1,0 +1,27 @@
+.home.content {
+    h1 {
+        font-size: 3rem;
+    }
+    background-color: $primary_color;
+    .text {
+        width: 100%;
+    }
+    .image {
+        width: 100%;
+    }
+}
+
+@media all and (min-width: 576px ){
+    .home.content {
+        .image {
+            width: 260px;
+        }
+    }
+}
+@media all and (min-width: 992px ){
+    .home.content {
+        .text {
+            width: 70%;
+        }
+    }
+}

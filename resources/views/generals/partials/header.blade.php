@@ -1,8 +1,11 @@
 <header>
     <nav class="px-2 navbar-expand-lg h-100 ">
         <div class="d-flex justify-content-between align-items-center w-100 h-100">
-            <a class="navbar-brand fs-4" href="{{ route('home')}}">Deliveboo</a>
-            <div class="d-flex align-items-center h-100">
+            <a class="navbar-brand fs-4 h-100" href="{{ route('home')}}">
+                <img src="/img/logo.jpg" alt="Deliveboo_logo" class="logo h-100 p-2">
+                <span class= "brand">DeliveBoo</span>
+            </a>
+            <div class="d-flex align-items-center h-100 ">
                 <ul class="d-flex align-items-center m-0 gap-3 h-100 list-unstyled">
                     @guest
                         <li class="nav-item">
@@ -18,7 +21,7 @@
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ Auth::user()->name }}
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu overflow-hidden">
                                 <li>
                                     <a class="dropdown-item"
                                         href="{{ route('admin.home')}}">

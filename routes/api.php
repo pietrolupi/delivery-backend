@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\PageController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\Admin\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,4 @@ Route::get('/restaurants-by-type', [PageController::class, 'getRestaurantsByType
 Route::get('/restaurants/restaurant-detail/{id}', [PageController::class, 'getRestaurantById']);
 Route::get('/payment/token', [PaymentController::class, 'token']);
 Route::post('/payment/checkout', [PaymentController::class, 'checkout']);
+Route::post('/orders', [OrderController::class, 'store']);

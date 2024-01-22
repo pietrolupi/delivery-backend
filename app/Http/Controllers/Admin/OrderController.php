@@ -41,7 +41,13 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $order = Order::create($data);
+        foreach($request->products as $product) {
+
+            $order->products()->attach($product['id'], ['product_quantity' => $product['quantity']]);
+        }
+        return response()->json($order);
     }
 
     /**

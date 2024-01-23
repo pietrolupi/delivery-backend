@@ -27,12 +27,17 @@
                         @include('generals.buttons.edit_btn', [
                             'route' => route('admin.products.edit', $product),
                             ])
-                        @include('generals.buttons.delete_btn', [
-                            'route' => route('admin.products.destroy', $product),'name' => $product->name,
-                            ])
+                       <!-- button delete -->
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+
                     </div>
                 </div>
             </a>
         @endforeach
     </div>
+      <!-- Modal -->
+      @include('generals.partials.modal')
+      <!--/// Modal -->
 @endsection

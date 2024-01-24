@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
+use App\Http\Requests\OrderRequest;
 
 
 class OrderController extends Controller
@@ -23,7 +24,7 @@ class OrderController extends Controller
                 $query->whereHas('restaurant', function ($query) use ($userId) {
                 $query->where('user_id', $userId);
             });
-        })->get();
+        })->orderBy('id', 'DESC')->get();
 
         return view('admin.orders.index', compact('orders'));
     }
@@ -41,7 +42,15 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $order = Order::create($data);
+        foreach($request->products as $product) {
+
+            $order->products()->attach($product['id'], ['product_quantity' => $product['quantity']]);
+
+        }
+
+        return response()->json($order);
     }
 
     /**

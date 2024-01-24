@@ -17,29 +17,31 @@
         <tbody>
 
         @forelse ($orders as $order)
+            <tr>
+                <td>{{$order->date}}</td>
+                <td>{{$order->total_price}}</td>
+                <td>{{$order->customer_name}}</td>
+                <td>{{$order->customer_address}}</td>
+                <td>{{$order->customer_email}}</td>
+                <td>{{$order->customer_phone}}</td>
 
-            <td>{{$order->date}}</td>
-            <td>{{$order->total_price}}</td>
-            <td>{{$order->customer_name}}</td>
-            <td>{{$order->customer_address}}</td>
-            <td>{{$order->customer_email}}</td>
-            <td>{{$order->customer_phone}}</td>
+                <td>
+                    <ul>
+                        @foreach ($order->products as $product )
 
-            <td>
-                <ul>
-                    @foreach ($order->products as $product )
+                        <li class="text-decoration-none list-unstyled">
+                            <span><strong>{{$product->name}}</strong></span> <span> : {{$product->pivot->product_quantity}}</span>
+                        </li>
 
-                    <li class="text-decoration-none list-unstyled">
-                        <span><strong>{{$product->name}}</strong></span> <span> : {{$product->pivot->product_quantity}}</span>
-                    </li>
-
-             {{--
-                    <span>{{$product->pivot_product_quantity}}</span> --}}
+                 {{--
+                        <span>{{$product->pivot_product_quantity}}</span> --}}
 
 
-                @endforeach
-                </ul>
-            </td>
+                    @endforeach
+                    </ul>
+                </td>
+
+            </tr>
 
 
         @empty

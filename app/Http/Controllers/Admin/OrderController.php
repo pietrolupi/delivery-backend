@@ -40,7 +40,7 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(OrderRequest $request)
+    public function store(Request $request)
     {
         $data = $request->all();
         $order = Order::create($data);

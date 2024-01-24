@@ -20,7 +20,6 @@ class LeadController extends Controller
         [
             'name' => 'required|min:2|max:255',
             'email' => 'required|min:2|max:255',
-            'message' => 'required|min:2',
             'address' => 'required|min:2|max:255',
             'phone' => 'required|min:8|max:10',
         ],
@@ -32,9 +31,6 @@ class LeadController extends Controller
             'email.required' => 'You must provide an email',
             'email.min' => 'Your email must be at least :min characters long',
             'email.max' => 'Your email can be at most :max characters long',
-
-            'message.required' => 'You must provide a message',
-            'message.min' => 'Your message must be at least :min characters long',
 
             'address.required' => 'You must provide an address',
             'address.min' => 'Your address must be at least :min characters long',

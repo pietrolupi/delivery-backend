@@ -29,9 +29,15 @@ class PageController extends Controller
 
             // Ottieni i ristoranti con i loro tipi e prodotti
             $restaurants = $query->with('types', 'products')->get();
+            foreach($restaurants as $restaurant){
+                $restaurant->image = asset('storage/'. $restaurant->image);
+            }
         } else {
             // Se non ci sono tipi specificati, restituire tutti i ristoranti
             $restaurants = Restaurant::with('types', 'products')->get();
+            foreach($restaurants as $restaurant){
+                $restaurant->image = asset('storage/'. $restaurant->image);
+            }
         }
 
         return response()->json($restaurants);

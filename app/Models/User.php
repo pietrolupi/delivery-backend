@@ -17,6 +17,12 @@ class User extends Authenticatable
         return $this->hasOne(Restaurant::class);
     }
 
+    public function leads()
+    {
+        return $this->hasMany(Lead::class);
+    }
+
+
     /**
      * The attributes that are mass assignable.
      *

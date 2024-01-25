@@ -18,6 +18,7 @@
         <button type="submit">Filter</button>
     </form> --}}
 
+
     <!-- Grafico per il numero di ordini -->
     <canvas id="ordersChart" width="800" height="400"></canvas>
 

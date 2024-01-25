@@ -39,4 +39,5 @@ class StatisticController extends Controller
         // Passa i dati alla vista
         return view('admin.statistics.index', compact('monthlyOrders', 'currentDate', 'lastYearDate'));
     }
+
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\RestaurantController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\StatisticController;
 
 
 /*
@@ -46,6 +47,7 @@ Route::middleware(['auth','verified'])
         Route::resource('restaurant', RestaurantController::class);
         Route::resource('products', ProductController::class);
         Route::resource('orders', OrderController::class);
+        Route::resource('statistics', StatisticController::class);
     });
 
 require __DIR__.'/auth.php';

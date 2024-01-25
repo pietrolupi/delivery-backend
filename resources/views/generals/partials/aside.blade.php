@@ -26,7 +26,7 @@
                 </a>
             </li>
             <li class="pb-2">
-                <a class="text-white text-decoration-none" href="#">
+                <a class="text-white text-decoration-none" href="{{route('admin.statistics.index')}}">
                     <span class="text">Your Statistics</span>
                     <i class="fs-1 icon fa-solid fa-chart-column"></i>
                 </a>

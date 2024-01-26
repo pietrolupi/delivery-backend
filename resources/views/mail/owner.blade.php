@@ -4,6 +4,7 @@
         Indirizzo email: {{ $lead->email }} <br>
         Messaggio: {{ $lead->message }} <br>
         Indirizzo di casa: {{ $lead->address }} <br>
-        Telefono: {{ $lead->phone }}
+        Telefono: {{ $lead->phone }} <br>
+        Questa mail è destinata al venditore!!!!
     </p>
 </div>

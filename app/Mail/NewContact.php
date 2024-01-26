@@ -42,9 +42,7 @@ class NewContact extends Mailable
     {
          // Aggiungi più viste qui, se necessario
          return (new Content())
-         ->view('mail.template')
-         ->with('userType', $this->userType)
-         ->with('lead', $this->lead);
+         ->view('mail.template')->with('userType', $this->userType)->with('lead', $this->lead);
     }
 
     /**

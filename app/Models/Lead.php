@@ -9,5 +9,9 @@ class Lead extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name' , 'email' , 'message' , 'address' , 'phone'];
+    protected $fillable = ['name' ,'user_id' , 'email' , 'message' , 'address' , 'phone'];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

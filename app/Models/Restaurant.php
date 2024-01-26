@@ -36,6 +36,7 @@ class Restaurant extends Model
             ->distinct(); // Adding distinct to avoid duplicate orders when multiple products have the same order
     }
 
+
     protected static function booted()
     {
         static::deleting(function ($restaurant) {

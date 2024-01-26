@@ -9,19 +9,18 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class NewContact extends Mailable
+class OrderContact extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $lead;
+    public $order;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($lead, $userType)
+    public function __construct($_order)
     {
-        $this->lead = $lead;
-        $this->userType = $userType;
+        $this->order = $_order;
     }
 
     /**
@@ -30,8 +29,8 @@ class NewContact extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Contact',
-            replyTo: $this->lead->email
+            subject: 'Order Contact',
+            replyTo: $this->order->email
         );
     }
 
@@ -40,9 +39,9 @@ class NewContact extends Mailable
      */
     public function content(): Content
     {
-         // Aggiungi più viste qui, se necessario
-         return (new Content())
-         ->view('mail.template')->with('userType', $this->userType)->with('lead', $this->lead);
+        return new Content(
+            view: 'view.customer',
+        );
     }
 
     /**

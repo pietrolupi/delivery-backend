@@ -8,8 +8,10 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Lead;
 use App\Models\Restaurant;
+use App\Models\Order;
 use App\Models\User;
 use App\Mail\NewContact;
+use App\Mail\OrderContact;
 
 class LeadController extends Controller
 {
@@ -42,23 +44,51 @@ class LeadController extends Controller
 
         ]
         );
-        // se i dati non sono validi restituisco success=false e i messaggi di errore
-        if($validator->fails()){
-            $success = false;
-            $errors = $validator->errors();
-            return response()->json(compact('success' , 'errors'));
-        }
-        // se non ci sono errori:
 
-        // salvo i dati nel db
+      // Se i dati non sono validi restituisco success=false e i messaggi di errore
+      if ($validator->fails()) {
+        $success = false;
+        $errors = $validator->errors();
+        return response()->json(compact('success', 'errors'));
+    }
+
+        // Salvo i dati nel db
         $new_lead = new Lead();
-        $new_lead->fill($data);
+        $new_lead->fill($request->all());
         $new_lead->save();
-        // invio l'email
-        $toAddresses = ['franedsandi@gmail.com', $data['email']];
-        Mail::to($toAddresses)->send(new NewContact($new_lead));
-        // restituisco success = true
+
+        // $new_order = new Order();
+        // $new_order->fill($request->all());
+        // $new_order->save();
+
+
+
+
+        // --------------------------------------------------------------------------------
+
+        // Ottieni l'user_id associato al lead
+        $userId = $new_lead->user_id;
+        // Ottieni l'email dello user
+        $userEmail = User::where('id', $data['user_id'])->value('email');
+
+          // Invio l'email
+        //   $toAddresses = [$userEmail, $data['email']];
+        //   Mail::to($toAddresses)->send(new NewContact($new_lead));
+          Mail::to($data['email'])->send(new NewContact($new_lead , 'customer'));
+          Mail::to($userEmail)->send(new NewContact($new_lead , 'owner'));
+
+
+
+        // -----------------------------------------------------------------------------------
+
+// invio generico funzionante vvvvvvvvvvvvvv
+        // // invio la mail
+        // $toAddresses = ['info@info.com' , $data['email']];
+        // Mail::to($toAddresses)->send(new NewContact($new_lead));
+
+        // Restituisco success = true
         $success = true;
         return response()->json(compact('success'));
     }
 }
+

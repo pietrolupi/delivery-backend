@@ -39,9 +39,8 @@ class NewContact extends Mailable
      */
     public function content(): Content
     {
-        return new Content(
-            view: 'mail.owner',
-        );
+         // Aggiungi più viste qui, se necessario
+        return (new Content())->view('mail.owner')->view('mail.customer');
     }
 
     /**

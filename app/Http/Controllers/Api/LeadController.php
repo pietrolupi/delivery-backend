@@ -81,8 +81,8 @@ class LeadController extends Controller
           // Invio l'email
         //   $toAddresses = [$userEmail, $data['email']];
         //   Mail::to($toAddresses)->send(new NewContact($new_lead));
-          Mail::to($data['email'])->send(new NewContact($new_lead));
-          Mail::to($userEmail)->send(new NewContact($new_lead));
+          Mail::to($data['email'])->send(new NewContact($new_lead , 'owner'));
+          Mail::to($userEmail)->send(new NewContact($new_lead , 'customer'));
 
 
 

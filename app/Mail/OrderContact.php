@@ -8,7 +8,6 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use App\Models\Order;
 
 class OrderContact extends Mailable
 {
@@ -31,7 +30,7 @@ class OrderContact extends Mailable
     {
         return new Envelope(
             subject: 'Order Contact',
-            replyTo: $this->order->customer_email
+            replyTo: $this->order->email
         );
     }
 

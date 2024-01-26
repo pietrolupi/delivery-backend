@@ -7,4 +7,12 @@
         Telefono: {{ $lead->phone }} <br>
         Questa mail è destinata al venditore!!!!
     </p>
+    {{-- <p>
+        Ordine effettutato : {{ $order->name }} <br>
+        Spesa totale: {{ $order->email }} <br>
+        Nome del cliente {{ $order->message }} <br>
+        Indirizzo del cliente {{ $order->address }} <br>
+        Email del cliente: {{ $order->phone }} <br>
+        Numero di telefono del cliente: {{ $order->phone }}
+    </p> --}}
 </div>

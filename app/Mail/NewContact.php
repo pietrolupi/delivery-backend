@@ -18,9 +18,10 @@ class NewContact extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct($_lead)
+    public function __construct($lead, $userType)
     {
-        $this->lead = $_lead;
+        $this->lead = $lead;
+        $this->userType = $userType;
     }
 
     /**
@@ -40,7 +41,10 @@ class NewContact extends Mailable
     public function content(): Content
     {
          // Aggiungi più viste qui, se necessario
-        return (new Content())->view('mail.owner')->view('mail.customer');
+         return (new Content())
+         ->view('mail.template')
+         ->with('userType', $this->userType)
+         ->with('lead', $this->lead);
     }
 
     /**

@@ -25,7 +25,6 @@ class LeadController extends Controller
             'message' => 'required|min:2',
             'address' => 'required|min:2|max:255',
             'phone' => 'required|min:8|max:10',
-            // 'user_id' => 'required|exists:users,id'
         ],
         [
             'name.required' => 'You must provide a name',
@@ -47,8 +46,6 @@ class LeadController extends Controller
             'phone.min' => 'Your phone number must be at least :min characters long',
             'phone.max' => 'Your phone number can be at most :max characters long',
 
-            // 'users_id.required' => 'There are not users associates',
-            // 'users_id.exists' => 'User does not exists',
         ]
         );
 
@@ -81,8 +78,8 @@ class LeadController extends Controller
           // Invio l'email
         //   $toAddresses = [$userEmail, $data['email']];
         //   Mail::to($toAddresses)->send(new NewContact($new_lead));
-          Mail::to($data['email'])->send(new NewContact($new_lead , 'owner'));
-          Mail::to($userEmail)->send(new NewContact($new_lead , 'customer'));
+          Mail::to($data['email'])->send(new NewContact($new_lead , 'customer'));
+          Mail::to($userEmail)->send(new NewContact($new_lead , 'owner'));
 
 
 

@@ -6,19 +6,6 @@
 
     <h2>Your Statistics:</h2>
 
-     {{-- <!-- Aggiungi il form per il filtro -->
-     <form action="{{ route('admin.statistics.index') }}" method="get">
-        <label for="filter_year">Select Year:</label>
-        <select name="filter_year" id="filter_year">
-            @for ($year = $currentYear; $year >= $currentYear - 10; $year--)
-                <option value="{{ $year }}" {{ ($year == $currentYear) ? 'selected' : '' }}>{{ $year }}</option>
-            @endfor
-        </select>
-
-        <button type="submit">Filter</button>
-    </form> --}}
-
-    <!-- Grafico per il numero di ordini -->
     <canvas id="ordersChart" width="800" height="400"></canvas>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -37,7 +24,7 @@
                     backgroundColor: 'rgba(223, 117, 11, 0.2)',
                     borderColor: 'rgba(223, 117, 11, 1)',
                     borderWidth: 1,
-                    pointRadius: 5, // Aggiungi punti per evidenziare ogni mese
+                    pointRadius: 5, 
                     pointBackgroundColor: 'rgba(223, 117, 11, 1)',
                 }]
             },

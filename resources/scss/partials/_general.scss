@@ -40,6 +40,7 @@ header{
         }
     }
 
+
 }
 
 // aside
@@ -61,6 +62,24 @@ aside{
             color: $secondary_color ;
         }
     }
+
+    a{
+        color: white;
+        text-decoration: none;
+
+
+
+        &.active{
+            i{
+                color: rgb(144, 38, 0);
+            }
+            .text{
+
+                background-color:rgb(144, 38, 0);
+            }
+        }
+
+    }
 }
 
 @media all and (min-width: 768px ) {
@@ -73,6 +92,14 @@ aside{
         .icon{
             display: none;
         }
+
+        .active{
+            i{
+                color: black;
+
+            }
+        }
+
     }
 }
 

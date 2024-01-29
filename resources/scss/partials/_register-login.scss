@@ -30,8 +30,13 @@ color: $secondary_color;
         background-color: $primary_color;
 
     }
+
 }
 
+.btn-type:active{
+    color: $secondary_color;
+    background-color: $primary_color;
+}
 
 .btn.register-login {
     background-color: $tertiary_color;

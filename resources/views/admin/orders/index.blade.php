@@ -9,19 +9,18 @@
 
         <div class="custom-card-content">
 
-            <table class="table table-hover">
-                <thead class="">
-                  <tr>
-                    <th scope="col">Summary Order</th>
-                    <th scope="col" class="d-none d-md-table-cell">Order Total</th>
-                    <th scope="col">Customer Name</th>
-                    <th scope="col">Customer Address</th>
-                    <th scope="col" class="d-none d-lg-table-cell">Customer Email</th>
-                    <th scope="col">Customer Phone</th>
-                    <th scope="col" class="d-none d-lg-table-cell">Date</th>
-                  </tr>
-                </thead>
-                <tbody>
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Order Total</th>
+            <th scope="col">Customer Name</th>
+            <th scope="col">Customer Address</th>
+            <th scope="col">Customer Email</th>
+            <th scope="col">Customer Phone</th>
+          </tr>
+        </thead>
+        <tbody>
 
                 @forelse ($orders as $order)
                     <tr>
@@ -33,8 +32,8 @@
                                     <span>{{$product->name}}</span> <span> : {{$product->pivot->product_quantity}}</span>
                                 </li>
 
-                         {{--
-                                <span>{{$product->pivot_product_quantity}}</span> --}}
+                 {{--
+                        <span>{{$product->pivot_product_quantity}}</span> --}}
 
 
                             @endforeach
@@ -55,10 +54,7 @@
                     <td>No orders yet!</td>
                 @endforelse
 
-                </tbody>
-              </table>
-        </div>
-    </div>
-
+        </tbody>
+      </table>
 
 @endsection

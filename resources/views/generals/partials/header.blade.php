@@ -2,7 +2,7 @@
     <nav class="px-2 navbar-expand-lg h-100 ">
         <div class="d-flex justify-content-between align-items-center w-100 h-100">
             <a class="navbar-brand fs-4 h-100" href="{{ route('home')}}">
-                <img src="/img/logo.jpg" alt="Deliveboo_logo" class="logo h-100 p-2">
+                <img src="/img/new-logo.jpg" alt="Deliveboo_logo" class="logo h-100 p-2">
                 <span class= "brand">DeliveBoo</span>
             </a>
             <div class="d-flex align-items-center h-100 ">

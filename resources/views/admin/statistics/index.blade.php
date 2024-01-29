@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
+<div class="p-4">
     @include('generals.partials.sessions')
-
 
     <h2>Your Statistics:</h2>
 
@@ -206,5 +206,5 @@
             max-height: 500px
         }
     </style>
-
+</div>
 @endsection

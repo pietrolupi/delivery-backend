@@ -21,6 +21,7 @@ header{
     height: 70px;
     background-color: $tertiary_color;
     color:white;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
     a{
         .brand{
             color: $detail_color;
@@ -39,6 +40,7 @@ header{
             scale: 1.1;
         }
     }
+
 
 }
 
@@ -61,6 +63,24 @@ aside{
             color: $secondary_color ;
         }
     }
+
+    a{
+        color: white;
+        text-decoration: none;
+
+
+
+        &.active{
+            i{
+                color: rgb(144, 38, 0);
+            }
+            .text{
+
+                background-color:rgb(144, 38, 0);
+            }
+        }
+
+    }
 }
 
 @media all and (min-width: 768px ) {
@@ -73,6 +93,14 @@ aside{
         .icon{
             display: none;
         }
+
+        .active{
+            i{
+                color: black;
+
+            }
+        }
+
     }
 }
 

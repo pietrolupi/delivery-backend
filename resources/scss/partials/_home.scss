@@ -2,7 +2,6 @@
     h1 {
         font-size: 3rem;
     }
-    background-color: $primary_color;
     .text {
         width: 100%;
     }
@@ -22,6 +21,21 @@
     .home.content {
         .text {
             width: 60%;
+        }
+    }
+}
+.subtitle{
+    color:$secondary_color;
+}
+.beta{
+    background-color: $secondary_color;
+    img{
+        border-radius: 50%;
+    }
+    .text{
+        color:$primary_color;
+        .subtitle{
+            color: $tertiary_color;
         }
     }
 }

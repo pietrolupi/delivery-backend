@@ -23,6 +23,7 @@ class StatisticController extends Controller
 
         // Ottieni i dati per gli ultimi 12 mesi, inclusi il mese corrente
         $monthlyOrders = [];
+        $monthlySales = [];
 
         // Assuming you have a logged-in user, retrieve the user ID
         $userId = $request->user()->id;
@@ -42,14 +43,17 @@ class StatisticController extends Controller
 
             // Modifica della query per conteggiare gli ordini totali per il mese corrente
             $orderCount = $orders->count();
+            $totalSales = $orders->sum('total_price');
 
             $monthlyOrders[$key] = $orderCount;
+            $monthlySales[$key] = $totalSales;
         }
 
         ksort($monthlyOrders);
+        ksort($monthlySales);
 
         // Passa i dati alla vista
-        return view('admin.statistics.index', compact('monthlyOrders', 'currentDate', 'lastYearDate'));
+        return view('admin.statistics.index', compact('monthlyOrders','monthlySales', 'currentDate', 'lastYearDate'));
     }
 
 }

@@ -6,21 +6,17 @@
 
     <h2>Your Statistics:</h2>
 
-     {{-- <!-- Aggiungi il form per il filtro -->
-     <form action="{{ route('admin.statistics.index') }}" method="get">
-        <label for="filter_year">Select Year:</label>
-        <select name="filter_year" id="filter_year">
-            @for ($year = $currentYear; $year >= $currentYear - 10; $year--)
-                <option value="{{ $year }}" {{ ($year == $currentYear) ? 'selected' : '' }}>{{ $year }}</option>
-            @endfor
-        </select>
+    <div class="container my-4">
+        <!-- Grafico per il numero di ordini -->
+        <h4>- The total monthly orders for the last 12 months</h4>
+        <canvas id="ordersChart" width="800" height="400"></canvas>
+    </div>
 
-        <button type="submit">Filter</button>
-    </form> --}}
+    <div class="container">
+        <h4>- The total monthly sales for the last 12 months</h4>
+        <canvas id="salesChart" width="800" height="400" class="ms-4"></canvas>
+    </div>
 
-
-    <!-- Grafico per il numero di ordini -->
-    <canvas id="ordersChart" width="800" height="400"></canvas>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
@@ -33,12 +29,12 @@
             data: {
                 labels: Object.keys(monthlyOrders),
                 datasets: [{
-                    label: 'Order Count',
+                    label: 'Amount of monthly orders',
                     data: Object.values(monthlyOrders),
                     backgroundColor: 'rgba(223, 117, 11, 0.2)',
                     borderColor: 'rgba(223, 117, 11, 1)',
                     borderWidth: 1,
-                    pointRadius: 5, // Aggiungi punti per evidenziare ogni mese
+                    pointRadius: 5,
                     pointBackgroundColor: 'rgba(223, 117, 11, 1)',
                 }]
             },
@@ -64,8 +60,49 @@
             }
         });
     </script>
+    <script>
+        var monthlySales = {!! json_encode($monthlySales) !!};
+
+        var ctxSales = document.getElementById('salesChart').getContext('2d');
+        var salesChart = new Chart(ctxSales, {
+            type: 'line',
+            data: {
+                labels: Object.keys(monthlySales),
+                datasets: [{
+                    label: 'Amount of monthly sales',
+                    data: Object.values(monthlySales),
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1,
+                    pointRadius: 5,
+                    pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        type: 'category',
+                        labels: Object.keys(monthlySales),
+                        title: {
+                            display: true,
+                            text: 'Year/Month'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Total Sales'
+                        },
+                        // Aggiungi altre opzioni se necessario
+                    }
+                }
+            }
+        });
+    </script>
     <style>
-        #ordersChart {
+        #ordersChart,
+        #salesChart {
             max-width: 1000px;
             max-height: 500px
         }

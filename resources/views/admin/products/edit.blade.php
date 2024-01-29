@@ -63,7 +63,7 @@
                     <label class="form-check-label" for="visibility">
                         <div id="visibilityMessage">
                             <span class="{{ $product->visibility == 1 ? 'text-success' : 'text-danger' }}">
-                                {{ $product->visibility == 1 ? 'Avaliable' : 'Unavaliable' }}
+                                {{ $product->visibility == 1 ? 'Available' : 'Unavailable' }}
                             </span>
                         </div>
                     </label>
@@ -232,17 +232,34 @@
 
         /* Image Upload Preview */
         function showImage(event) {
-            let input = event.target;
-            let reader = new FileReader();
-            let output = document.getElementById('imagePreview');
-            let newImageText = document.getElementById('newImageText');
+        let input = event.target;
+        let reader = new FileReader();
+        let output = document.getElementById('imagePreview');
+        let newImageText = document.getElementById('newImageText');
 
-            reader.onload = function() {
-                output.src = reader.result;
+        if(input.files && input.files[0]) {
+            reader.onload = function(e) {
+                output.src = e.target.result;
                 newImageText.style.display = 'block';
             };
-
             reader.readAsDataURL(input.files[0]);
+        } else {
+            resetImagePreview();
         }
+    }
+
+    /* Reset dell'anteprima dell'immagine e del testo */
+    function resetImagePreview() {
+        let output = document.getElementById('imagePreview');
+        let newImageText = document.getElementById('newImageText');
+        output.src = '';
+        newImageText.style.display = 'none';
+    }
+
+    // Evento di input per la selezione dell'immagine
+    $('#image').on('change', showImage);
+
+    // Aggiunta dell'evento di reset al form
+    $('form').on('reset', resetImagePreview);
     </script>
 @endsection

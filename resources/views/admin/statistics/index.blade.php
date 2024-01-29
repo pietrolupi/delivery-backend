@@ -8,12 +8,12 @@
 
     <div class="container my-4">
         <!-- Grafico per il numero di ordini -->
-        <h4>- The total monthly orders for the last 12 months</h4>
+        <h4>The total monthly orders for the last 12 months</h4>
         <canvas id="ordersChart" width="800" height="400"></canvas>
     </div>
 
     <div class="container">
-        <h4>- The total monthly sales for the last 12 months</h4>
+        <h4>The total monthly sales for the last 12 months</h4>
         <canvas id="salesChart" width="800" height="400" class="ms-4"></canvas>
     </div>
 

@@ -3,10 +3,10 @@
 @section('content')
 <div class="p-4">
     @include('generals.partials.sessions')
-
     <h2>Update your product</h2>
     <p>Note: Fields marked with an asterisk &ast; are mandatory.</p>
-    <form class="form-group mb-2" action="{{ route('admin.products.update', $product) }}" method="POST"
+
+    <form class="form-group mb-2 form-cs" action="{{ route('admin.products.update', $product) }}" method="POST"
         enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -25,7 +25,7 @@
             <label for="ingredients" class="form-label">Ingredients &ast;</label>
             <input type="text" id="ingredients"
                 name="ingredients"class="form-control
-                                                                    @error('ingredients')
+                                                                                                @error('ingredients')
                 is-invalid
                 @enderror"
                 value="{{ old('ingredients', $product->ingredients) }}">
@@ -43,30 +43,32 @@
         </textarea>
             <span id="errorDescription" class="text-danger"></span>
         </div>
-
-        <div class="mb-3">
-            <label for="price" class="form-label">Price &ast;</label>
-            <input type="number" step="0.01" id="price" name="price" min="0.01" max="9999.99"
-                class="form-control
+        <div class="d-flex gap-5">
+            <div class="mb-3 w-25">
+                <label for="price" class="form-label">Price &ast;</label>
+                <input type="number" step="0.01" id="price" name="price" min="0.01" max="9999.99"
+                    class="form-control
             @error('price')
             is-invalid
             @enderror"
-                value="{{ old('price', $product->price) }}">
-            <span id="errorPrice" class="text-danger"></span>
-        </div>
+                    value="{{ old('price', $product->price) }}">
+                <span id="errorPrice" class="text-danger"></span>
+            </div>
 
-        <div class="mb-3">
-            <label for="visibility" class="form-label">Availability</label>
-            <div class="form-check">
-                <input value="{{ old('visibility', $product->visibility) }}" {{ $product->visibility == 1 ? 'checked' : 0 }}
-                    type="checkbox" id="visibility" name="visibility" class="form-check-input">
-                <label class="form-check-label" for="visibility">
-                    <div id="visibilityMessage">
-                        <span class="{{ $product->visibility == 1 ? 'text-success' : 'text-danger' }}">
-                            {{ $product->visibility == 1 ? 'Avaliable' : 'Unavaliable' }}
-                        </span>
-                    </div>
-                </label>
+            <div class="mb-3">
+                <label for="visibility" class="form-label">Availability</label>
+                <div class="form-check">
+                    <input value="{{ old('visibility', $product->visibility) }}"
+                        {{ $product->visibility == 1 ? 'checked' : 0 }} type="checkbox" id="visibility" name="visibility"
+                        class="form-check-input">
+                    <label class="form-check-label" for="visibility">
+                        <div id="visibilityMessage">
+                            <span class="{{ $product->visibility == 1 ? 'text-success' : 'text-danger' }}">
+                                {{ $product->visibility == 1 ? 'Avaliable' : 'Unavaliable' }}
+                            </span>
+                        </div>
+                    </label>
+                </div>
             </div>
         </div>
 
@@ -99,6 +101,7 @@
         <button type="reset" class="btn btn-danger">Reset</button>
     </form>
 </div>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         /*  CIENT SIDE VALIDATION ------------------------------------------------------------------------------------------------------ */

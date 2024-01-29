@@ -24,7 +24,7 @@ class OrderController extends Controller
                 $query->whereHas('restaurant', function ($query) use ($userId) {
                 $query->where('user_id', $userId);
             });
-        })->orderBy('id', 'DESC')->get();
+        })->orderBy('date', 'DESC')->get();
 
         return view('admin.orders.index', compact('orders'));
     }

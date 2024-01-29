@@ -56,4 +56,36 @@ class StatisticController extends Controller
         return view('admin.statistics.index', compact('monthlyOrders','monthlySales', 'currentDate', 'lastYearDate'));
     }
 
+
+    public function getMonthlyData(Request $request)
+    {
+        $month = $request->input('month');
+        $year = $request->input('year');
+
+        $userId = $request->user()->id;
+
+        $daysInMonth = Carbon::createFromDate($year, $month)->daysInMonth;
+        $monthlyData = [];
+
+        for ($day = 1; $day <= $daysInMonth; $day++) {
+            $date = Carbon::createFromDate($year, $month, $day);
+            $formattedDate = $date->format('Y-m-d');
+
+            // Trova gli ordini per questo giorno
+            $orders = Order::whereHas('products', function ($query) use ($userId) {
+                $query->whereHas('restaurant', function ($query) use ($userId) {
+                    $query->where('user_id', $userId);
+                });
+            })->whereDate('date', $formattedDate)->get();
+
+            // Calcola il numero di ordini per questo giorno
+            $totalOrders = $orders->count();
+
+            // Aggiungi il valore al risultato
+            $monthlyData[$formattedDate] = $totalOrders;
+        }
+
+        return response()->json($monthlyData);
+    }
+
 }

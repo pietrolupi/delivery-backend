@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
+<div class="p-4">
     @include('generals.partials.sessions')
 
 
@@ -16,5 +17,5 @@
                 </div>
             </div>
         </a>
-
+</div>
 @endsection

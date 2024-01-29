@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
+<div class="p-4">
     @include('generals.partials.sessions')
     <h2>Create your product</h2>
     <p class="text-danger">Note: fields marked with an asterisk &ast; are required.</p>
@@ -86,7 +87,7 @@
         <button type="submit" class="btn btn-success">Submit</button>
         <button type="reset" class="btn btn-danger">Reset</button>
     </form>
-
+</div>
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

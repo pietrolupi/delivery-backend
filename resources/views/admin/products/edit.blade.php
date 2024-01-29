@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
+<div class="p-4">
     @include('generals.partials.sessions')
 
     <h2>Update your product</h2>
@@ -97,7 +98,7 @@
         <button type="submit" class="btn btn-success">Submit</button>
         <button type="reset" class="btn btn-danger">Reset</button>
     </form>
-
+</div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         /*  CIENT SIDE VALIDATION ------------------------------------------------------------------------------------------------------ */

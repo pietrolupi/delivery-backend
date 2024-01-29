@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div>
+    <div class="p-4">
         <h2>Welcome to {{ $restaurant->name }}</h2>
 
         @if ($restaurant->types->isNotEmpty())

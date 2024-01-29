@@ -1,6 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
+
+<div class="p-4">
     @include('generals.partials.sessions')
 
     <h3>{{ $product->name}}</h1>
@@ -35,5 +37,5 @@
       @include('generals.partials.modal')
       <!--/// Modal -->
 
-
+</div>
 @endsection

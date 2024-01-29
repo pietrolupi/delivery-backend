@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
+<div class="p-4">
     @include('generals.partials.sessions')
 
     <h1>Your Menu</h1>
@@ -40,4 +41,5 @@
       <!-- Modal -->
       @include('generals.partials.modal')
       <!--/// Modal -->
+    </div>
 @endsection

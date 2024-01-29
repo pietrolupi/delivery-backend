@@ -1,18 +1,19 @@
 @extends('layouts.admin')
 
 @section('content')
+<div class="p-4">
     <h1>INDEX ORDERS</h1>
 
     <table class="table">
         <thead class="thead-dark">
-          <tr>
+        <tr>
             <th scope="col">Date</th>
             <th scope="col">Order Total</th>
             <th scope="col">Customer Name</th>
             <th scope="col">Customer Address</th>
             <th scope="col">Customer Email</th>
             <th scope="col">Customer Phone</th>
-          </tr>
+        </tr>
         </thead>
         <tbody>
 
@@ -33,7 +34,7 @@
                             <span><strong>{{$product->name}}</strong></span> <span> : {{$product->pivot->product_quantity}}</span>
                         </li>
 
-                 {{--
+                {{--
                         <span>{{$product->pivot_product_quantity}}</span> --}}
 
 
@@ -49,6 +50,6 @@
         @endforelse
 
         </tbody>
-      </table>
-
+    </table>
+</div>
 @endsection

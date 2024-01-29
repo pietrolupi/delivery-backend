@@ -1,7 +1,31 @@
 date,total_price,customer_name,customer_address,customer_email,customer_phone
-2024-01-12 11:03:10,29.99,John Doe,"123 Main Street, Anytown, AT 12345",customer1@gmail.com,555-1234
-
-
-
-
-
+2023-01-15,45.75,John Doe,123 Main St,john.doe@example.com,555-1234
+2023-02-08,32.5,Jane Smith,456 Oak Ave,jane.smith@example.com,555-5678
+2023-03-22,58.0,Bob Johnson,789 Pine Rd,bob.johnson@example.com,555-9101
+2023-04-04,27.5,Alice Williams,101 Elm Blvd,alice.williams@example.com,555-1122
+2023-05-18,40.5,Charlie Davis,202 Cedar Ln,charlie.davis@example.com,555-3344
+2023-06-30,22.0,Eva Brown,303 Birch Ct,eva.brown@example.com,555-5566
+2023-07-12,34.5,Michael Wilson,404 Maple Dr,michael.wilson@example.com,555-7788
+2023-08-25,47.0,Olivia Miller,505 Redwood St,olivia.miller@example.com,555-9900
+2023-09-07,29.5,Liam Davis,606 Spruce Ave,liam.davis@example.com,555-1122
+2023-10-19,55.0,Sophia White,707 Fir Rd,sophia.white@example.com,555-3344
+2023-11-02,26.5,Noah Anderson,808 Pine Blvd,noah.anderson@example.com,555-5566
+2023-12-14,38.0,Emma Garcia,909 Oak Ln,emma.garcia@example.com,555-7788
+2023-01-03,42.5,Aiden Rodriguez,210 Birch Ct,aiden.rodriguez@example.com,555-9900
+2023-02-16,31.0,Mia Smith,321 Cedar Dr,mia.smith@example.com,555-1122
+2023-03-28,49.5,Lucas Brown,432 Maple Ave,lucas.brown@example.com,555-3344
+2023-04-10,21.0,Isabella Davis,543 Redwood Rd,isabella.davis@example.com,555-5566
+2023-05-24,37.5,Liam Miller,654 Spruce St,liam.miller@example.com,555-7788
+2023-06-06,28.0,Sophia Wilson,765 Fir Ave,sophia.wilson@example.com,555-9900
+2023-07-19,53.0,Aiden Garcia,876 Pine Blvd,aiden.garcia@example.com,555-1122
+2023-08-01,24.5,Mia Rodriguez,987 Oak Ln,mia.rodriguez@example.com,555-3344
+2023-09-13,46.0,Lucas Smith,109 Birch Dr,lucas.smith@example.com,555-5566
+2023-10-26,18.5,Isabella Brown,210 Cedar Rd,isabella.brown@example.com,555-7788
+2023-11-07,35.0,Liam Davis,321 Maple Ct,liam.davis@example.com,555-9900
+2023-12-21,50.5,Sophia Miller,432 Redwood St,sophia.miller@example.com,555-1122
+2023-01-09,23.0,Aiden Wilson,543 Spruce Ave,aiden.wilson@example.com,555-3344
+2023-02-22,39.5,Mia Garcia,654 Fir Dr,mia.garcia@example.com,555-5566
+2023-03-06,29.0,Lucas Rodriguez,765 Pine Rd,lucas.rodriguez@example.com,555-7788
+2023-04-18,48.5,Isabella Smith,876 Oak Blvd,isabella.smith@example.com,555-9900
+2023-05-01,20.0,Liam Brown,987 Birch Ln,liam.brown@example.com,555-1122
+2023-06-14,36.5,Sophia Davis,109 Cedar Dr,sophia.davis@example.com,555-3344

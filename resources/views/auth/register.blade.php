@@ -6,12 +6,16 @@
 
 
         <div class="col-md-8">
-            <p>Note: Fields marked with an asterisk &ast; are required.</p>
-            <div class="card">
 
-                <div class="card-header">{{ __('Register') }}</div>
+            <div class="card register-login">
+
+                <div class="card-header d-flex flex-column justify-content-center align-items-center">
+                   <h5> {{ __('Register to DeliveBoo') }}</h5>
+                    <img class="image" style="width: 80px;" src="/img/bg-register.png" alt="register-img">
+                </div>
 
                 <div class="card-body">
+                    <p class="text-danger">Note: fields marked with an asterisk &ast; are required.</p>
                     <form method="post" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
@@ -127,7 +131,7 @@
                                 @endforeach
 
                             </div>
-                            <div id="typeErrorMessage" class="text-danger" style="display: none;">
+                            <div id="typeErrorMessage" class="text-danger py-2" style="display: none;">
                                 Please select at least one type.
                             </div>
                         </div>
@@ -144,8 +148,8 @@
                         </div>
 
                         <div class="mb-4 row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                            <div >
+                                <button type="submit" class="btn register-login">
                                     {{ __('Register') }}
                                 </button>
                             </div>

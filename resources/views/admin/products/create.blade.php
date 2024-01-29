@@ -3,7 +3,7 @@
 @section('content')
     @include('generals.partials.sessions')
     <h2>Create your product</h2>
-    <p>Note: Fields marked with an asterisk &ast; are mandatory.</p>
+    <p class="text-danger">Note: fields marked with an asterisk &ast; are required.</p>
     <form class="form-group" action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <input required type="hidden" name="restaurant_id" value="{{ Auth::user()->restaurant->id }}">

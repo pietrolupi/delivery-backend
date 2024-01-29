@@ -124,18 +124,16 @@
                                     @if(old('types') && in_array($type->id, old('types')))
                                     checked
                                     @endif
-                                    onchange="checkSelectedTypes()"
+                                    onchange="checkSelectedTypes(); activeSelected(this)"
                                 >
 
                                 <label class="btn-type d-flex justify-content-center align-items-center" for="type_{{$type->id}}">{{$type->name}}</label>
                                 @endforeach
-
                             </div>
                             <div id="typeErrorMessage" class="text-danger py-2" style="display: none;">
                                 Please select at least one type.
                             </div>
                         </div>
-
 
                         <div class="mb-3">
                             <label for="image" class="form-label">Image &ast;</label>
@@ -179,24 +177,30 @@
         reader.readAsDataURL(input.files[0]);
     }
 
-    function checkSelectedTypes() {
-        var typesCheckbox = document.getElementsByName('types[]');
-        var typeErrorMessage = document.getElementById('typeErrorMessage');
+    function activeSelected(checkbox) {
+    var btnType = checkbox.nextElementSibling;
 
-        var atLeastOneSelected = false;
-        for (var i = 0; i < typesCheckbox.length; i++) {
-            if (typesCheckbox[i].checked) {
-                atLeastOneSelected = true;
-                break;
-            }
-        }
+    btnType.classList.toggle('active', checkbox.checked);
+}
 
-        if (atLeastOneSelected) {
-            typeErrorMessage.style.display = 'none';
-        } else {
-            typeErrorMessage.style.display = 'block';
+function checkSelectedTypes() {
+    var typesCheckbox = document.getElementsByName('types[]');
+    var typeErrorMessage = document.getElementById('typeErrorMessage');
+
+    var atLeastOneSelected = false;
+    for (var i = 0; i < typesCheckbox.length; i++) {
+        if (typesCheckbox[i].checked) {
+            atLeastOneSelected = true;
+            break;
         }
     }
+
+    if (atLeastOneSelected) {
+        typeErrorMessage.style.display = 'none';
+    } else {
+        typeErrorMessage.style.display = 'block';
+    }
+}
 </script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>

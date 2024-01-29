@@ -4,7 +4,7 @@
     @include('generals.partials.sessions')
     <h2>Create your product</h2>
     <p class="text-danger">Note: fields marked with an asterisk &ast; are required.</p>
-    <form class="form-group" action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
+    <form class="form-group form-cs" action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <input required type="hidden" name="restaurant_id" value="{{ Auth::user()->restaurant->id }}">
         <div class="mb-3">
@@ -40,31 +40,32 @@
             </textarea>
             <span id="errorDescription" class="text-danger"></span>
         </div>
-
-        <div class="mb-3">
-            <label for="price" class="form-label">Price &ast;</label>
-            <input type="number" step="0.01" id="price" name="price" min="0.01" max="9999.99"
-                class="form-control
+        <div class="d-flex gap-5">
+            <div class="mb-3 w-25">
+                <label for="price" class="form-label">Price &ast;</label>
+                <input type="number" step="0.01" id="price" name="price" min="0.01" max="9999.99"
+                    class="form-control
                 @error('price')
                 is-invalid
                 @enderror"
-                value="{{ old('price') }}">
-            <span id="errorPrice" class="text-danger"></span>
-        </div>
+                    value="{{ old('price') }}">
+                <span id="errorPrice" class="text-danger"></span>
+            </div>
 
-        <div class="mb-3">
-            <label for="visibility" class="form-label">Disponibility</label>
-            <div class="form-check">
-                <input type="checkbox" id="visibility" name="visibility" {{ old('visibility') == 1 ? 'checked' : '' }}
-                    class="form-check-input" value="1">
+            <div class="mb-3">
+                <label for="visibility" class="form-label">Availability</label>
+                <div class="form-check">
+                    <input type="checkbox" id="visibility" name="visibility" {{ old('visibility') == 1 ? 'checked' : '' }}
+                        class="form-check-input" value="1">
 
-                <label class="form-check-label" for="visibility">
-                    <div id="visibilityMessage">
-                        <span class="{{ old('visibility') == 1 ? 'text-success' : 'text-danger' }}">
-                            {{ old('visibility') == 1 ? 'Avaliable' : 'Unavaliable' }}
-                        </span>
-                    </div>
-                </label>
+                    <label class="form-check-label" for="visibility">
+                        <div id="visibilityMessage">
+                            <span class="{{ old('visibility') == 1 ? 'text-success' : 'text-danger' }}">
+                                {{ old('visibility') == 1 ? 'Avaliable' : 'Unavaliable' }}
+                            </span>
+                        </div>
+                    </label>
+                </div>
             </div>
         </div>
 

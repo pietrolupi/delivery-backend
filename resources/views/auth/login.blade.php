@@ -6,8 +6,11 @@
 
 
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+            <div class="card register-login">
+                <div class="card-header d-flex flex-column justify-content-center align-items-center">
+                    <h5>{{ __('Login into DeliveBoo') }}</h5>
+                    <img class="image" style="width: 80px;" src="/img/bg-register.png" alt="register-img">
+                </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -55,12 +58,12 @@
 
                         <div class="mb-4 row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn register-login">
                                     {{ __('Login') }}
                                 </button>
 
                                 @if (Route::has('password.request'))
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                <a style="color: orange;" class="btn btn-link" href="{{ route('password.request') }}">
                                     {{ __('Forgot Your Password?') }}
                                 </a>
                                 @endif

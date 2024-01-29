@@ -6,12 +6,16 @@
 
 
         <div class="col-md-8">
-            <p>Note: Fields marked with an asterisk &ast; are mandatory.</p>
-            <div class="card">
 
-                <div class="card-header">{{ __('Register') }}</div>
+            <div class="card register-login">
+
+                <div class="card-header d-flex flex-column justify-content-center align-items-center">
+                   <h5> {{ __('Register to DeliveBoo') }}</h5>
+                    <img class="image" style="width: 80px;" src="/img/bg-register.png" alt="register-img">
+                </div>
 
                 <div class="card-body">
+                    <p class="text-danger">Note: fields marked with an asterisk &ast; are required.</p>
                     <form method="post" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
@@ -120,18 +124,16 @@
                                     @if(old('types') && in_array($type->id, old('types')))
                                     checked
                                     @endif
-                                    onchange="checkSelectedTypes()"
+                                    onchange="checkSelectedTypes(); activeSelected(this)"
                                 >
 
-                                <label class="btn btn-outline-primary" for="type_{{$type->id}}">{{$type->name}}</label>
+                                <label class="btn-type d-flex justify-content-center align-items-center" for="type_{{$type->id}}">{{$type->name}}</label>
                                 @endforeach
-
                             </div>
-                            <div id="typeErrorMessage" class="text-danger" style="display: none;">
+                            <div id="typeErrorMessage" class="text-danger py-2" style="display: none;">
                                 Please select at least one type.
                             </div>
                         </div>
-
 
                         <div class="mb-3">
                             <label for="image" class="form-label">Image &ast;</label>
@@ -144,8 +146,8 @@
                         </div>
 
                         <div class="mb-4 row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                            <div >
+                                <button type="submit" class="btn register-login">
                                     {{ __('Register') }}
                                 </button>
                             </div>
@@ -175,24 +177,30 @@
         reader.readAsDataURL(input.files[0]);
     }
 
-    function checkSelectedTypes() {
-        var typesCheckbox = document.getElementsByName('types[]');
-        var typeErrorMessage = document.getElementById('typeErrorMessage');
+    function activeSelected(checkbox) {
+    var btnType = checkbox.nextElementSibling;
 
-        var atLeastOneSelected = false;
-        for (var i = 0; i < typesCheckbox.length; i++) {
-            if (typesCheckbox[i].checked) {
-                atLeastOneSelected = true;
-                break;
-            }
-        }
+    btnType.classList.toggle('active', checkbox.checked);
+}
 
-        if (atLeastOneSelected) {
-            typeErrorMessage.style.display = 'none';
-        } else {
-            typeErrorMessage.style.display = 'block';
+function checkSelectedTypes() {
+    var typesCheckbox = document.getElementsByName('types[]');
+    var typeErrorMessage = document.getElementById('typeErrorMessage');
+
+    var atLeastOneSelected = false;
+    for (var i = 0; i < typesCheckbox.length; i++) {
+        if (typesCheckbox[i].checked) {
+            atLeastOneSelected = true;
+            break;
         }
     }
+
+    if (atLeastOneSelected) {
+        typeErrorMessage.style.display = 'none';
+    } else {
+        typeErrorMessage.style.display = 'block';
+    }
+}
 </script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>

@@ -1,0 +1,44 @@
+.card.register-login{
+color: $secondary_color;
+    .image{
+        border-radius: 50%;
+    }
+    .card-header {
+        background-color: $tertiary_color;
+    }
+}
+
+.image.logged {
+    border-radius: 50%;
+}
+
+.btn-type{
+    background-color: $secondary_color;
+    color: $primary_color;
+    border-radius: 12px;
+    width: 90px;
+    height: 40px;
+    line-height: 40px;
+    padding: 5px 0;
+    font-size:  13px;
+    border: 3px solid $secondary_color;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    &:hover , &.active{
+        color: $secondary_color;
+        background-color: $primary_color;
+
+    }
+}
+
+
+.btn.register-login {
+    background-color: $tertiary_color;
+    color: $primary_color;
+    border: 2px solid $tertiary_color;
+    &:hover {
+        background-color: $primary_color;
+        color: $tertiary_color;
+    }
+}

@@ -50,4 +50,5 @@ Route::middleware(['auth','verified'])
         Route::resource('statistics', StatisticController::class);
     });
 
+Route::post('/get-monthly-data', [StatisticController::class, 'getMonthlyData']);
 require __DIR__.'/auth.php';

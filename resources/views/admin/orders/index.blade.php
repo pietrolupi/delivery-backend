@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="custom-card">
+    <div class="custom-card register-login">
 
         <div class="custom-card-title">
             <h2>Your Orders</h2>

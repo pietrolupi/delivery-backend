@@ -6,7 +6,7 @@
 
 
         <div class="col-md-8">
-            <p>Note: Fields marked with an asterisk &ast; are mandatory.</p>
+            <p>Note: Fields marked with an asterisk &ast; are required.</p>
             <div class="card">
 
                 <div class="card-header">{{ __('Register') }}</div>
@@ -123,7 +123,7 @@
                                     onchange="checkSelectedTypes()"
                                 >
 
-                                <label class="btn btn-outline-primary" for="type_{{$type->id}}">{{$type->name}}</label>
+                                <label class="btn-type d-flex justify-content-center align-items-center" for="type_{{$type->id}}">{{$type->name}}</label>
                                 @endforeach
 
                             </div>

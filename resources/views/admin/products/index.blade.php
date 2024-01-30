@@ -5,7 +5,7 @@
         @include('generals.partials.sessions')
 
         <h1>Your Menu</h1>
-        <p>On these pages, you can manage your products. Feel free to add, edit, or remove them.</p>
+        <p>On this page, you can manage your products. Feel free to add, edit, or remove them.</p>
         @include('generals.buttons.create_btn', [
             'route' => route('admin.products.create'),
             'add' => 'Add a new product',

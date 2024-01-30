@@ -8,7 +8,7 @@
                 </a>
             </li>
             <li class="pb-2">
-                <a class="{{Route::currentRouteName() === 'admin.restaurant.index' ? 'active' : ''}}" href="{{ route('admin.restaurant.index') }}">
+                <a class="{{Route::currentRouteName() === 'admin.restaurant.show' ? 'active' : ''}}" href="{{ route('admin.restaurant.show', $restaurant) }}">
                     <span class="text">Your Restaurant</span>
                     <i class="fs-1 icon fa-solid fa-utensils"></i>
                 </a>

@@ -36,9 +36,7 @@ header{
         .logo{
             border-radius: 50%;
         }
-        &:hover{
-            scale: 1.1;
-        }
+
     }
 
 
@@ -119,5 +117,20 @@ aside{
     &:hover {
         background-color: $primary_color !important;
         color: $secondary_color !important;
+    }
+}
+
+
+// buttons
+
+.custom-edit{
+    background-color:$tertiary_color;
+    color: white;
+    border: 1px solid $tertiary_color
+    !important;
+    &:hover{
+
+        background-color:#994f06;
+        color: rgb(233, 232, 232);
     }
 }

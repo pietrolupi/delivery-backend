@@ -4,7 +4,9 @@
 <div class="home">
     <div class="d-flex flex-column justify-content-center align-items-center">
         <h1 class="my-3">Welcome to DeliveBoo</h1>
-        <img class="w-25 logo" src="/img/new-logo.jpg" alt="logo">
+        <div class="img-container logo">
+            <img src="/img/new-logo.jpg" alt="logo">
+        </div>
         <div class="d-xl-flex align-items-center gap-5 p-5">
             <div class="px-5">
                 <h3 class="subtitle pb-3" >Get ready to embark on a delicious journey <br> with Deliveboo!</h3>

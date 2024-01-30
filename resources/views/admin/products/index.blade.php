@@ -18,13 +18,13 @@
                 <a href="{{ route('admin.products.show', $product) }}" class="text-decoration-none">
                     <div class="card product d-flex p-2 flex-column align-items-center justify-content-center {{ $product->visibility == 0 ? 'unavaliable' : '' }}"
                         style="width: 15rem;">
-                        <div class="image d-flex align-items-center justify-content-center">
+                        <div class="image-container d-flex align-items-center justify-content-center">
                             <img src="{{ asset('storage/' . $product->image) }}"
                                 onerror="this.src='{{ asset('img/placeholder.jpg') }}'"
-                                class="img-fluid card-img-top w-50 object-fit-cover" alt="{{ $product->name }}">
+                                class="img-fluid card-img-top object-fit-cover" alt="{{ $product->name }}">
                         </div>
                         <div class="card-body">
-                            <h6 class="card-text text-center">{{ $product->name }}</h6>
+                            <h5 class="product-name card-text text-center">{{ $product->name }}</h5>
                         </div>
                         <div class="buttons d-flex gap-2">
                             @include('generals.buttons.edit_btn', [

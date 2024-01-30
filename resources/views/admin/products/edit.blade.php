@@ -55,21 +55,21 @@
                 <span id="errorPrice" class="text-danger"></span>
             </div>
 
-        <div class="mb-3">
-            <label for="visibility" class="form-label">Availability</label>
-            <div class="form-check">
-                <input value="{{ old('visibility', $product->visibility) }}" {{ $product->visibility == 1 ? 'checked' : 0 }}
-                    type="checkbox" id="visibility" name="visibility" class="form-check-input">
-                <label class="form-check-label" for="visibility">
-                    <div id="visibilityMessage">
-                        <span class="{{ $product->visibility == 1 ? 'text-success' : 'text-danger' }}">
-                            {{ $product->visibility == 1 ? 'Avaliable' : 'Unavaliable' }}
-                        </span>
-                    </div>
-                </label>
+            <div class="mb-3">
+                <label for="visibility" class="form-label">Availability</label>
+                <div class="form-check">
+                    <input value="{{ old('visibility', $product->visibility) }}" {{ $product->visibility == 1 ? 'checked' : 0 }}
+                        type="checkbox" id="visibility" name="visibility" class="form-check-input">
+                    <label class="form-check-label" for="visibility">
+                        <div id="visibilityMessage">
+                            <span class="{{ $product->visibility == 1 ? 'text-success' : 'text-danger' }}">
+                                {{ $product->visibility == 1 ? 'Avaliable' : 'Unavaliable' }}
+                            </span>
+                        </div>
+                    </label>
+                </div>
             </div>
         </div>
-
         <div class="mb-3">
             <label for="image" class="form-label">Substitute the image</label>
             <input type="file" id="image" name="image"

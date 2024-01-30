@@ -23,18 +23,22 @@
             <div class="image w-50 w-md-25">
                 <img class="w-100 h-100 object-fit-cover" src="{{ asset('storage/' . $restaurant->image) }}" alt="{{ $restaurant->name }}">
             </div>
-            <div class="text fw-bold">
+            <div class="text restaurant-details-container fw-bold">
                 <h4>Your restaurant's details:</h4>
                 <p>Address: {{ $restaurant->address }}</p>
                 <p>VAT: {{ $user->vat }}</p>
+                <div class="actions-container d-flex flex-column ">
+                    <a class="btn btn-custom" href="{{ route('admin.products.index') }}"> Products </a>
+                    <a class="btn btn-custom" href="{{ route('admin.orders.index') }}"> Orders </a>
+                    <a class="btn btn-custom" href="{{ route('admin.statistics.index') }}"> Statistics </a>
+                </div>
             </div>
+
         </div>
 
 
         @endif
-        <div class="btns d-flex gap-2">
-            @include('generals.buttons.back_btn', ['route' => route('admin.restaurant.index', $restaurant)])
-        </div>
+
     </div>
 
 @endsection

@@ -1,4 +1,18 @@
 .badge-type {
     background-color: $secondary_color;
     color: $primary_color;
+    padding: 3px 10px !important;
+}
+
+
+.restaurant-details-container{
+    .btn.btn-custom{
+        color: $primary_color;
+        background-color: $tertiary_color;
+        margin: 10px 0;
+        max-width: 250px;
+        &:hover{
+            background-color: #4d2213db;
+        }
+    }
 }

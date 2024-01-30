@@ -1,49 +1,54 @@
 @extends('layouts.admin')
 
 @section('content')
+
+
+
 <div class="p-4">
     @include('generals.partials.sessions')
 
     <h2>Your Statistics:</h2>
 
-    <div class="container my-4">
-        <!-- Grafico per il numero di ordini -->
-        <h4>The total monthly orders for the last 12 months</h4>
-        <canvas id="ordersChart" width="800" height="400"></canvas>
-    </div>
-
-    <div class="container my-4">
-        <h4>The total monthly sales for the last 12 months</h4>
-        <canvas id="salesChart" width="800" height="400" class="ms-4"></canvas>
-    </div>
 
     <div class="container">
-
-        <form id="filterForm">
-            <label for="month" class="form-label">Seleziona il mese:</label>
-            <select id="month" name="month" class="">
+        <h4 class="pt-3">Search for data relating to the selected month:</h4>
+        <form class="d-flex align-items-center" id="filterForm">
+            <label for="month" class="form-label m-0">Month:</label>
+            <select class="form-select custom" id="month" name="month" >
                 @for ($i = 1; $i <= 12; $i++)
                     <option value="{{ $i }}">{{ date('F', mktime(0, 0, 0, $i, 1)) }}</option>
                 @endfor
             </select>
 
-            <label for="year">Seleziona l'anno:</label>
-            <select id="year" name="year">
+            <label for="year">Year:</label>
+            <select class="form-select custom" id="year" name="year">
                 @for ($year = date('Y'); $year >= 2020; $year--)
                     <option value="{{ $year }}">{{ $year }}</option>
                 @endfor
             </select>
 
-            <button type="submit">Filtra</button>
+            <button class="btn custom" type="submit">Filter</button>
         </form>
 
-        <div id="monthlyChartContainer" class="container my-4">
-            <h4>Data relating to the selected month</h4>
-            <canvas id="monthlyChart" width="800" height="400"></canvas>
+
+        <div  id="monthlyChartContainer" class="container my-4 p-0">
+            <canvas class="bg-light d-none" id="monthlyChart" width="800" height="400"></canvas>
         </div>
 
     </div>
 
+    <div class="container my-4">
+        <!-- Grafico per il numero di ordini -->
+        <h4>The total monthly orders for the last 6 months</h4>
+
+            <canvas class="bg-white p-2" id="ordersChart" width="800" height="400"></canvas>
+
+    </div>
+
+    <div class="container my-4">
+        <h4>The total monthly sales for the last 6 months</h4>
+        <canvas class="bg-white p-2" id="salesChart" width="800" height="400" class="ms-4"></canvas>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
@@ -139,6 +144,7 @@
                 monthlyChart.destroy();
             }
 
+
             // Crea il nuovo grafico con i dati aggiornati
             monthlyChart = new Chart(ctxMonthly, {
                 type: 'line',
@@ -184,6 +190,8 @@
             // Aggiungi il token CSRF ai dati del modulo
             formData.append('_token', '{{ csrf_token() }}');
 
+            document.getElementById('monthlyChart').classList.remove('d-none');
+
             // Esegui una richiesta AJAX per ottenere i dati del mese selezionato
             fetch('/get-monthly-data', {
                 method: 'POST',
@@ -198,12 +206,27 @@
             });
         });
     </script>
-    <style>
+    <style lang="scss" scoped>
         #ordersChart,
         #salesChart,
         #monthlyChart {
             max-width: 1000px;
-            max-height: 500px
+            max-height: 500px;
+
+        }
+
+        .form-select.custom{
+            width: 120px;
+            display: inline-block;
+            height: 35px;
+            margin-right: 10px
+        }
+        .btn.custom{
+
+            background-color: #df750b;
+            color: white;
+            border: 1px solid #df750b5d;
+            height: 33px
         }
     </style>
 </div>

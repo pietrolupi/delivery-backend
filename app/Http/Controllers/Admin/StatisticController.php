@@ -28,7 +28,7 @@ class StatisticController extends Controller
         // Assuming you have a logged-in user, retrieve the user ID
         $userId = $request->user()->id;
 
-        for ($i = 0; $i < 12; $i++) {
+        for ($i = 0; $i < 6; $i++) {
             $currentMonth = $currentDate->copy()->subMonths($i);
             $key = $currentMonth->format('Y-m');
 

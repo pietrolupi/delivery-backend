@@ -28,7 +28,7 @@ class StatisticController extends Controller
         // Assuming you have a logged-in user, retrieve the user ID
         $userId = $request->user()->id;
 
-        for ($i = 0; $i < 6; $i++) {
+        for ($i = 0; $i < 12; $i++) {
             $currentMonth = $currentDate->copy()->subMonths($i);
             $key = $currentMonth->format('Y-m');
 
@@ -81,11 +81,17 @@ class StatisticController extends Controller
             // Calcola il numero di ordini per questo giorno
             $totalOrders = $orders->count();
 
-            // Aggiungi il valore al risultato
-            $monthlyData[$formattedDate] = $totalOrders;
+            // Calcola l'ammontare delle vendite per questo giorno
+            $totalSalesDay = $orders->sum('total_price');
+
+            // Aggiungi i valori al risultato
+            $monthlyData[$formattedDate] = [
+                'orders' => $totalOrders,
+                'sales' => $totalSalesDay
+            ];
         }
 
-        return response()->json($monthlyData);
+        return response()->json(['monthlyData' => $monthlyData]);
     }
 
 }

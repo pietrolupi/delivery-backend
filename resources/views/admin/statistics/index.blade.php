@@ -34,6 +34,9 @@
         <div  id="monthlyChartContainer" class="container my-4 p-0">
             <canvas class="bg-light d-none" id="monthlyChart" width="800" height="400"></canvas>
         </div>
+        <div class="container my-4 p-0">
+            <canvas class="bg-light d-none" id="monthlyChartSales" width="800" height="400"></canvas>
+        </div>
 
     </div>
 
@@ -132,8 +135,9 @@
         });
     </script>
     <script>
-        // Variabile globale per memorizzare l'istanza del grafico mensile
+
         var monthlyChart;
+        var monthlyChartSales;
 
         // Funzione per aggiornare il grafico mensile con i dati filtrati
         function updateMonthlyChart(monthlyData) {
@@ -144,27 +148,35 @@
                 monthlyChart.destroy();
             }
 
+            // Estrai i dati dall'oggetto JSON
+            var labels = Object.keys(monthlyData);
+            var ordersData = labels.map(function(label) {
+                return monthlyData[label].orders;
+            });
+            var salesData = labels.map(function(label) {
+                return monthlyData[label].sales;
+            });
 
             // Crea il nuovo grafico con i dati aggiornati
             monthlyChart = new Chart(ctxMonthly, {
                 type: 'line',
                 data: {
-                    labels: Object.keys(monthlyData),
+                    labels: labels,
                     datasets: [{
                         label: 'This month\'s orders',
-                        data: Object.values(monthlyData),
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
+                        data: ordersData,
+                        backgroundColor: 'rgba(223, 117, 11, 0.2)',
+                        borderColor: 'rgba(223, 117, 11, 1)',
                         borderWidth: 1,
                         pointRadius: 5,
-                        pointBackgroundColor: 'rgba(75, 192, 192, 1)',
-                    }]
+                        pointBackgroundColor: 'rgba(223, 117, 11, 1)',
+                    },]
                 },
                 options: {
                     scales: {
                         x: {
                             type: 'category',
-                            labels: Object.keys(monthlyData),
+                            labels: labels,
                             title: {
                                 display: true,
                                 text: 'Day of the month'
@@ -174,7 +186,61 @@
                             beginAtZero: true,
                             title: {
                                 display: true,
-                                text: 'Order Count'
+                                text: 'Count'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+         // Funzione per aggiornare il grafico mensile con i dati filtrati
+         function updateMonthlyChartSales(monthlyData) {
+            var ctxMonthly = document.getElementById('monthlyChartSales').getContext('2d');
+
+            // Distruggi il grafico precedente se esiste
+            if (monthlyChartSales) {
+                monthlyChartSales.destroy();
+            }
+
+            // Estrai i dati dall'oggetto JSON
+            var labels = Object.keys(monthlyData);
+            // var ordersData = labels.map(function(label) {
+            //     return monthlyData[label].orders;
+            // });
+            var salesData = labels.map(function(label) {
+                return monthlyData[label].sales;
+            });
+
+            // Crea il nuovo grafico con i dati aggiornati
+            monthlyChartSales = new Chart(ctxMonthly, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'This month\'s sales',
+                        data: salesData,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1,
+                        pointRadius: 5,
+                        pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            type: 'category',
+                            labels: labels,
+                            title: {
+                                display: true,
+                                text: 'Day of the month'
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Count'
                             }
                         }
                     }
@@ -199,7 +265,30 @@
             })
             .then(response => response.json())
             .then(data => {
-                updateMonthlyChart(data);
+                updateMonthlyChart(data.monthlyData);
+            })
+            .catch(error => {
+                console.error('Errore durante la richiesta AJAX:', error);
+            });
+        });
+         // Intercetta l'invio del form e invia una richiesta AJAX
+         document.getElementById('filterForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+
+            // Aggiungi il token CSRF ai dati del modulo
+            formData.append('_token', '{{ csrf_token() }}');
+
+            document.getElementById('monthlyChartSales').classList.remove('d-none');
+
+            // Esegui una richiesta AJAX per ottenere i dati del mese selezionato
+            fetch('/get-monthly-data', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                updateMonthlyChartSales(data.monthlyData);
             })
             .catch(error => {
                 console.error('Errore durante la richiesta AJAX:', error);
@@ -208,11 +297,14 @@
     </script>
     <style lang="scss" scoped>
         #ordersChart,
-        #salesChart,
-        #monthlyChart {
+        #salesChart {
             max-width: 1000px;
             max-height: 500px;
-
+        }
+        #monthlyChart,
+        #monthlyChartSales {
+            max-width: 1000px;
+            max-height: 400px;
         }
 
         .form-select.custom{

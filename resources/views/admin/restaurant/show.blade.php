@@ -20,7 +20,7 @@
             </ul>
         </div>
         <div class="content d-flex flex-column flex-md-row gap-2 mb-2 p-2">
-            <div class="image w-50 w-md-25">
+            <div class="image show-custom w-50 ">
                 <img class="w-100 h-100 object-fit-cover" src="{{ asset('storage/' . $restaurant->image) }}" alt="{{ $restaurant->name }}">
             </div>
             <div class="text restaurant-details-container fw-bold">

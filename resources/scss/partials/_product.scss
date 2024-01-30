@@ -2,11 +2,32 @@
 
     .card.product{
         overflow-y: auto;
-        background-color: white;
+        background-color: $secondary_color;
+
         &.unavaliable{
         background-color: #7575753d;}
         &:hover{
             box-shadow: 0px 0px 30px 5px rgba(120, 119, 118, 0.575);
+            background-color: $tertiary_color;
+            border: 3px solid $secondary_color;
+        }
+        &:hover .name {
+            color: $secondary_color;
+        }
+        &:hover .btn-delete-cs {
+            background-color: $secondary_color !important;
+            color: $detail_color !important;
+        }
+        &:hover .btn-info-cs {
+            color: $tertiary_color !important;
+            background-color: $secondary_color !important;
+        }
+        &:hover .btn-show-cs {
+            background-color: $secondary_color !important;
+            color: $primary_color !important;
+        }
+        .name{
+            color: $tertiary_color;
         }
         .image{
             height: 150px;
@@ -34,3 +55,35 @@
         }
     }
 
+
+
+    .btn-info-cs {
+        background-color: $tertiary_color !important;
+        color: $secondary_color !important;
+        border: 2px solid $secondary_color !important;
+        &:hover{
+            color: $tertiary_color !important;
+            background-color: $secondary_color !important;
+        }
+    }
+
+
+    .btn-delete-cs {
+        background-color: $detail_color !important;
+        color: $primary_color !important;
+
+        &:hover {
+            background-color: $primary_color !important;
+            color: $detail_color !important;
+        }
+    }
+
+
+    .btn-show-cs {
+        background-color: $primary_color !important;
+        color: $secondary_color !important;
+        &:hover {
+            background-color: $secondary_color !important;
+            color: $primary_color !important;
+        }
+    }

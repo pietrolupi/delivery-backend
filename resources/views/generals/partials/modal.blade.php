@@ -4,7 +4,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="deleteModalLabel">Delete confirmation</h5>
-                    <button type="button" class="close btn btn-danger" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close btn btn-delete-cs" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -19,7 +19,7 @@
                     <form action="{{ route('admin.products.destroy', $product) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">
+                        <button type="submit" class="btn btn-delete-cs">
                             <span>Yes</span>
                             <i class="m-1 fa-solid fa-trash-can"></i>
                         </button>

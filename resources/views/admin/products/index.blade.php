@@ -4,8 +4,8 @@
 <div class="p-4">
     @include('generals.partials.sessions')
 
-    <h1>Your Menu</h1>
-    <p>On these pages, you can manage your products. Feel free to add, edit, or remove them.</p>
+    <h1 class="secondary-color">Your Menu</h1>
+    <p class="secondary-color">On these pages, you can manage your products. Feel free to add, edit, or remove them.</p>
     @include('generals.buttons.create_btn', [
         'route' => route('admin.products.create'),
         'add' => 'Add a new product',
@@ -23,15 +23,18 @@
                                 onerror="this.src='{{ asset('img/placeholder.jpg') }}'"
                                 class="img-fluid card-img-top w-50 object-fit-cover" alt="{{ $product->name }}">
                         </div>
-                        <div class="card-body">
+                        <div class="card-body name">
                             <h6 class="card-text text-center">{{ $product->name }}</h6>
                         </div>
                         <div class="buttons d-flex gap-2">
+                            @include('generals.buttons.show_btn', [
+                                'route' => route('admin.products.show', $product),
+                            ])
                             @include('generals.buttons.edit_btn', [
                                 'route' => route('admin.products.edit', $product),
                             ])
                             <!-- button delete -->
-                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+                            <button type="button" class="btn btn-delete-cs" data-toggle="modal" data-target="#deleteModal">
                                 <i class="fa-solid fa-trash-can"></i>
                             </button>
 

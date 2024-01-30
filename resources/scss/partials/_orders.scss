@@ -3,17 +3,16 @@ ul {
     padding: 0;
 }
 .custom-card {
-    border: 1px solid lightgrey;
     border-radius: 10px;
     margin-bottom: 20px;
     min-width: 420px;
   }
 
   .custom-card-title {
-    background-color: #f7f7f7;
+    background-color: #df750b;
+    color: #F5EBDC;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    border-bottom: 1px solid lightgrey;
     padding: 10px;
 
   }
@@ -23,4 +22,10 @@ ul {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     padding: 10px;
+  }
+
+  .table{
+    th , td{
+        color:#4D2213;
+    }
   }

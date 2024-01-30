@@ -3,14 +3,15 @@
 @section('content')
 <div class="home">
     <div class="d-flex flex-column justify-content-center align-items-center">
-        <h1 class= m-5>Welcome to DeliveBoo</h1>
+        <h1 class="my-3">Welcome to DeliveBoo</h1>
+        <img class="w-25 logo" src="/img/new-logo.jpg" alt="logo">
         <div class="d-xl-flex align-items-center gap-5 p-5">
             <div class="px-5">
                 <h3 class="subtitle pb-3" >Get ready to embark on a delicious journey <br> with Deliveboo!</h3>
                 <h5>We're here to make your dining experience a breeze. From hometown favorites to exotic cuisines, our diverse selection is just a tap away.</h5>
                 <p>Why settle for ordinary when you can have extraordinary? Explore our app, place your order, and let the flavors come to you. Fast, reliable, and always satisfying – that's Deliveboo!</p>
             </div>
-            <div class=" image px-5">
+            <div class="image px-5">
                 <img class="w-100 h-100 object-fit-cover rounded-5" src="/img/deliveryman.png" alt="logo">
             </div>
         </div>
@@ -28,7 +29,7 @@
             <div class="text px-5 mx-xl-5">
                 <h3 class="subtitle pb-3" >Deliveboo's Comitments</h3>
                 <h5>At Deliveboo, we're more than a delivery service; we're your foodie ally dedicated to elevating your dining adventures. Our commitment is simple and straightforward:</h5>
-                <ul class="list-unstyled lh-lg ">
+                <ul class="list-unstyled">
                     <li>🌮 <strong>Flavorful Variety:</strong> Discover diverse flavors from local favorites.</li>
                     <li>🚀 <strong>Swift & Hot Deliveries:</strong> Enjoy prompt and piping-hot meals, delivered with speed.</li>
                     <li>💖 <strong>Local Love:</strong> Support community chefs and businesses with every order.</li>
@@ -38,6 +39,10 @@
                 </ul>
                 <p class="text-center">Experience joy in every bite with Deliveboo – where commitment meets culinary magic! 🍽️✨</p>
             </div>
+        </div>
+        <div class="accordion-container container p-5">
+            <h3 class="py-1">F.A.Q.</h3>
+            @include('generals.partials.accordion')
         </div>
     </div>
 </div>

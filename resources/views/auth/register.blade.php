@@ -10,7 +10,7 @@
             <div class="card register-login">
 
                 <div class="card-header d-flex flex-column justify-content-center align-items-center">
-                   <h5> {{ __('Register to DeliveBoo') }}</h5>
+                   <h5> {{ __('Register your restaurant to DeliveBoo') }}</h5>
                     <img class="image" style="width: 80px;" src="/img/bg-register.png" alt="register-img">
                 </div>
 

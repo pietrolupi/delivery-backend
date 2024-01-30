@@ -110,3 +110,14 @@ aside{
 }
 
 
+// accordion
+
+.accordion-cs {
+    background-color: $secondary_color !important;
+    color: $primary_color !important;
+    border: 3px solid $tertiary_color !important;
+    &:hover {
+        background-color: $primary_color !important;
+        color: $secondary_color !important;
+    }
+}

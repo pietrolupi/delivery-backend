@@ -19,3 +19,4 @@ restaurant_id,name,ingredients,description,price,visibility,image
 4,Veggie Pizza,"Tomato sauce, mozzarella, bell peppers, olives, onions, mushrooms","A healthy choice loaded with bell peppers, olives, onions, and mushrooms",9.0,1,img/veggie-pizza.jpg
 4,Hawaiian Pizza,"Tomato sauce, mozzarella, ham, pineapple",A sweet and savory combination of ham and pineapple,10.0,0,img/hawaiian-pizza.jpg
 4,Four Cheese Pizza,"Tomato sauce, mozzarella, parmesan, gorgonzola, ricotta",Rich and creamy pizza with a blend of four cheeses,11.0,1,img/quattro-formaggi.jpg
+1,Golden Cheeseburger,"Wagyu Beef patty, golden cheddar cheese, silver lettuce, top quality tomato, golden onions, pickles",A classic cheeseburger with a juicy beef patty and melted cheddar cheese.,2999.99,1,img/golden-burger.jpg

@@ -22,8 +22,8 @@
 
 
 .image.show-custom{
-    min-width: 350px;
     margin: 0 auto;
+    width: 100%;
 }
 
 @media all and (min-width:576px){
@@ -33,7 +33,8 @@
 
 
     .image.show-custom{
-
+        min-width: 350px;
+        width: 50%;
         margin: 0 ;
     }
 }

@@ -29,7 +29,7 @@ class StatisticController extends Controller
         $userId = $request->user()->id;
 
         for ($i = 0; $i < 12; $i++) {
-            $currentMonth = $currentDate->copy()->subMonths($i);
+            $currentMonth = $currentDate->copy()->subMonthNoOverflow($i);
             $key = $currentMonth->format('Y-m');
 
             $orders = Order::whereHas('products', function ($query) use ($userId) {

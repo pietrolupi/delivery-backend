@@ -10,9 +10,9 @@
     <h2>Your Statistics:</h2>
 
 
-    <div class="container">
+    <div>
         <h4 class="pt-3">Search for data relating to the selected month:</h4>
-        <form class="d-flex flex-column flex-md-row align-items-center justify-content-center" id="filterForm">
+        <form class="container d-flex flex-column flex-md-row align-items-center align-items-md-start justify-content-center justify-content-md-start" id="filterForm">
             <div>
                 <label for="month" class="form-label m-0">Month:</label>
                 <select class="form-select custom" id="month" name="month" >
@@ -44,14 +44,14 @@
 
     <div class="container my-4">
         <!-- Grafico per il numero di ordini -->
-        <h4>The total monthly orders for the last 6 months</h4>
+        <h4>The total monthly orders for the last 12 months</h4>
 
             <canvas class="bg-white p-2" id="ordersChart" width="800" height="400"></canvas>
 
     </div>
 
     <div class="container my-4">
-        <h4>The total monthly sales for the last 6 months</h4>
+        <h4>The total monthly sales for the last 12 months</h4>
         <canvas class="bg-white p-2" id="salesChart" width="800" height="400" class="ms-4"></canvas>
     </div>
 

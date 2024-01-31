@@ -34,19 +34,29 @@
                                     'route' => route('admin.products.edit', $product),
                                 ])
                                 <!-- button delete -->
-                                <button type="button" class="btn btn-danger" data-toggle="modal"
-                                    data-target="#deleteModal">
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{ $product->id }}">
                                     <i class="fa-solid fa-trash-can"></i>
                                 </button>
-
                             </div>
                         </div>
                     </a>
                 </div>
+
+                <!-- Include the modal partial for each product -->
+                @include('generals.partials.delete_modal')
             @endforeach
         </div>
-        <!-- Modal -->
-        @include('generals.partials.modal')
         <!--/// Modal -->
     </div>
+
+    {{-- jQuery script for all modals --}}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        // function to show modal
+        function showDeleteModal(productId) {
+            $('#deleteModal' + productId).modal('show');
+        }
+    </script>
 @endsection

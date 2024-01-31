@@ -51,12 +51,6 @@
 
                     @empty
                         <td>No orders yet!</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
                     @endforelse
 
                 </tbody>

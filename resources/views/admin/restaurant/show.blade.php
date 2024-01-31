@@ -30,7 +30,7 @@
                 <div class="actions-container d-flex flex-column ">
                     <a class="btn btn-custom" href="{{ route('admin.products.index') }}"> Products </a>
                     <a class="btn btn-custom" href="{{ route('admin.orders.index') }}"> Orders </a>
-                    <a class="btn btn-custom" href="{{ route('admin.statistics.index') }}"> Statistics </a>
+                    <a class="btn btn-custom d-none d-md-block" href="{{ route('admin.statistics.index') }}"> Statistics </a>
                 </div>
             </div>
 

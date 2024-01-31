@@ -25,7 +25,7 @@
                     <i class="fs-1 icon fa-solid fa-receipt"></i>
                 </a>
             </li>
-            <li class="pb-2">
+            <li class="pb-2 d-none d-md-block">
                 <a class="{{Route::currentRouteName() === 'admin.statistics.index' ? 'active' : ''}}" href="{{route('admin.statistics.index')}}">
                     <span class="text">Your Statistics</span>
                     <i class="fs-1 icon fa-solid fa-chart-column"></i>

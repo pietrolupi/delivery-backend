@@ -7,13 +7,13 @@
         <div class="img-container logo">
             <img src="/img/new-logo.jpg" alt="logo">
         </div>
-        <div class="d-xl-flex align-items-center gap-5 p-5">
+        <div class="content d-xl-flex align-items-center gap-5 p-5">
             <div>
                 <h3 class="subtitle pb-3" >Get ready to embark on a delicious journey <br> with Deliveboo!</h3>
                 <h5>We're here to make your dining experience a breeze. From hometown favorites to exotic cuisines, our diverse selection is just a tap away.</h5>
                 <p>Why settle for ordinary when you can have extraordinary? Explore our app, place your order, and let the flavors come to you. Fast, reliable, and always satisfying – that's Deliveboo!</p>
             </div>
-            <div class="image>
+            <div class="image">
                 <img class="w-100 h-100 object-fit-cover rounded-5" src="/img/deliveryman.png" alt="logo">
             </div>
         </div>

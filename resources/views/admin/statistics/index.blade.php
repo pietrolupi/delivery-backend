@@ -12,21 +12,23 @@
 
     <div class="container">
         <h4 class="pt-3">Search for data relating to the selected month:</h4>
-        <form class="d-flex align-items-center" id="filterForm">
-            <label for="month" class="form-label m-0">Month:</label>
-            <select class="form-select custom" id="month" name="month" >
-                @for ($i = 1; $i <= 12; $i++)
-                    <option value="{{ $i }}">{{ date('F', mktime(0, 0, 0, $i, 1)) }}</option>
-                @endfor
-            </select>
-
-            <label for="year">Year:</label>
-            <select class="form-select custom" id="year" name="year">
-                @for ($year = date('Y'); $year >= 2020; $year--)
-                    <option value="{{ $year }}">{{ $year }}</option>
-                @endfor
-            </select>
-
+        <form class="d-flex flex-column flex-md-row align-items-center justify-content-center" id="filterForm">
+            <div>
+                <label for="month" class="form-label m-0">Month:</label>
+                <select class="form-select custom" id="month" name="month" >
+                    @for ($i = 1; $i <= 12; $i++)
+                        <option value="{{ $i }}">{{ date('F', mktime(0, 0, 0, $i, 1)) }}</option>
+                    @endfor
+                </select>
+            </div>
+            <div>
+                <label for="year">Year:</label>
+                <select class="form-select custom" id="year" name="year">
+                    @for ($year = date('Y'); $year >= 2020; $year--)
+                        <option value="{{ $year }}">{{ $year }}</option>
+                    @endfor
+                </select>
+            </div>
             <button class="btn custom" type="submit">Filter</button>
         </form>
 

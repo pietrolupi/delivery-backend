@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('ingredients');
             $table->text('description', 400)->nullable();
             $table->decimal('price', 6, 2)->unsigned();
-            $table->binary('visibility');
+            $table->boolean('visibility');
             $table->string('image')->nullable();
 
             $table->timestamps();

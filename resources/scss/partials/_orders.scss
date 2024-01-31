@@ -5,7 +5,7 @@ ul {
 .custom-card {
     border-radius: 10px;
     margin-bottom: 20px;
-    min-width: 420px;
+    min-width: 300px;
   }
 
   .custom-card-title {
@@ -27,5 +27,11 @@ ul {
   .table{
     th , td{
         color:#4D2213;
+    }
+  }
+
+  @media all and (max-width:576px) {
+    .custom-card {
+        font-size: 0.6rem;
     }
   }
